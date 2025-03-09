@@ -65,13 +65,35 @@ Customer Can adjust Inventory and Shipping status.
 
 <h1>Profile Page:</h1>
 <p>
-This page allows users (customers) to view and manage:
+This page allows users (customers/vendors) to view and manage:
 </p>
 <p>
 - Current Orders: A list of active orders with status and delivery details.<br>
 - Past Orders: Completed or canceled orders with dates, totals, and receipts.<br>
 - Account Info: Editable personal data (name, email, address).<br>
 - Cart: Items pending purchase, with stock warnings if needed.
+</p>
+
+<h3>Parameters Needed:</h3>
+<p>
+  - User ID / Session Token to identify which profile to load.<br>
+  - User Role (customer, vendor) to determine which profile links to display.
+</p>
+
+<h3>Data Needed:</h3>
+<p>
+  - User Profile Data (name, email, address, etc.)<br>
+  - Current Orders (order ID, products, status, estimated delivery)<br>
+  - Past Orders (dates, totals, status)<br>
+  - Cart Items (product details, quantity, price, stock alerts)
+</p>
+
+<h3>Link Destinations:</h3>
+<p>
+  - Header Navigation: Home, Products, Contact, Cart.<br>
+  - Sidebar: Current Orders, Past Orders, Account Info, Cart - jumps to those interal profile sections.<br>
+  - Vendor Links (if user is a vendor): Manage Inventory, Price Updates, leading to the Client Portal.
+    
 </p>
 
 <img src="profile_layout.png" alt="Profile Page Wireframe" width="500">
