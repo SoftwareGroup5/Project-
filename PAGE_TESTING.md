@@ -16,14 +16,22 @@ h1>Homepage:</h1>
 <h4> Parameters Needed: </h4> <p> 
     - User ID / Session Token (if logged in) to personalize content.<br> 
     - Featured product data (name, image, price, and promotional details).<br> 
-    - User memo and goals (if available in the database).<br> </p> <h4> 
+    - User memo and goals (if available in the database).<br> </p> 
 
-Data Needed to Load Page: </h4> <p> 
+<h4> Data Needed to Load Page: </h4> <p> 
     - User Database (to display personalized content if logged in).<br> - Product Database (to load featured products and promotions).<br> 
-    - Static Assets (homepage banner image, branding elements).<br> </p> <h4> Link Destinations: </h4> <p> - <b>Customer Portal:</b> Directs employees/vendors to inventory and order management.<br> 
+    - Static Assets (homepage banner image, branding elements).<br> </p> 
+
+<h4> Link Destinations: </h4> <p> 
+    - <b>Customer Portal:</b> Directs employees/vendors to inventory and order management.<br> 
     - <b>Products Page:</b> Leads customers to browse and purchase items.<br> 
     - <b>Profile Page:</b> Provides access to user-specific details, including past orders and account management.<be>
-    - <b>Cart:</b> A persistent link to review items ready for checkout.<br> </p> <img src="Homepage.png" alt="Homepage Wireframe" width="500">
+    - <b>Cart:</b> A persistent link to review items ready for checkout.<br> </p> 
+        <img src="Homepage.png" alt="Homepage Wireframe" width="500">
+
+
+
+    
 <h1>Products Page:</h1>
 <p>
 The <b>Products Page</b> displays a catalog of available items with detailed descriptions and purchasing options.
