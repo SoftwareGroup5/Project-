@@ -5,15 +5,7 @@ Lucid chart showing the flow of our webpages: <br>
 
 <h1>Homepage:</h1>
 <p>
-The <b>Homepage</b> serves as the main entry point for users, providing navigation to various sections of the website.
-</p>
-<p>
-- A welcoming banner with a brief introduction.<br>
-- Quick links to the <b>Customer Portal</b>, <b>Products Page</b>, and <b>Profile Page</b>.<br>
-- Featured products or promotions.<br>
-- Picture, Memo, Goals.
-</p>
-
+The h1>Homepage:</h1> <p> The <b>Homepage</b> serves as the main entry point for users, providing a welcoming introduction and easy navigation to key sections of the website. </p> <h4> Features:</h4> <p> - <b>Welcome Banner:</b> A visually engaging header with a brief introduction to the website and its offerings.<br> - <b>Quick Navigation:</b> Prominent links directing users to the <b>Customer Portal</b>, <b>Products Page</b>, and <b>Profile Page</b>.<br> - <b>Featured Products & Promotions:</b> Highlighted deals, trending items, or seasonal promotions.<br> - <b>User Personalization:</b> A section displaying the user’s profile picture, a personalized memo, and set goals (if applicable).<br> </p> <h4> Parameters Needed: </h4> <p> - User ID / Session Token (if logged in) to personalize content.<br> - Featured product data (name, image, price, and promotional details).<br> - User memo and goals (if available in the database).<br> </p> <h4> Data Needed to Load Page: </h4> <p> - User Database (to display personalized content if logged in).<br> - Product Database (to load featured products and promotions).<br> - Static Assets (homepage banner image, branding elements).<br> </p> <h4> Link Destinations: </h4> <p> - <b>Customer Portal:</b> Directs employees/vendors to inventory and order management.<br> - <b>Products Page:</b> Leads customers to browse and purchase items.<br> - <b>Profile Page:</b> Provides access to user-specific details, including past orders and account management.<br> - <b>Cart:</b> A persistent link to review items ready for checkout.<br> </p> <img src="Homepage.png" alt="Homepage Wireframe" width="500">
 <h1>Products Page:</h1>
 <p>
 The <b>Products Page</b> displays a catalog of available items with detailed descriptions and purchasing options.
