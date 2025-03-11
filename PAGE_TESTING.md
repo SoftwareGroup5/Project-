@@ -41,7 +41,12 @@ The <b>Products Page</b> displays a catalog of available items with detailed des
     - Display img<br>
     - Menu links<br>
     - Menu Destination
-    </p>
+</p>
+<h4> Links Needed to load page: </h4><p>
+    - Menu links<br>
+    - Product Links<br>
+    - Cart Link
+</p>    
     <img src="Products_Page.png" alt="checkout mockup for clients" width="500">
 <h1>Cart:</h1>
 <h4> Features:</h4>
@@ -68,6 +73,11 @@ The <b>Products Page</b> displays a catalog of available items with detailed des
     - Display img<br>
     - Menu links<br>
     - Menu Destination
+</p>
+<h4> Links Needed to load page: </h4><p>
+    - Menu links<br>
+    - Product Links<br>
+    - Purchase Link
 </p>
     
 <img src="Cart.png" alt="checkout mockup for clients" width="500">
