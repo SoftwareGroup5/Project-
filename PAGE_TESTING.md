@@ -5,7 +5,7 @@ Lucid chart showing the flow of our webpages: <br>
 
 <h1>Homepage:</h1>
 <p>
-h1>Homepage:</h1> 
+
 <p> The <b>Homepage</b> serves as the main entry point for users, providing a welcoming introduction and easy navigation to key sections of the website. 
 </p> <h4> Features:</h4> <p> 
     - <b>Welcome Banner:</b> A visually engaging header with a brief introduction to the website and its offerings <br>
