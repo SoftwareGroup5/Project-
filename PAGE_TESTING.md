@@ -61,6 +61,42 @@ The Charts will pull from the database to populate
     <p>
 Customer Can adjust Inventory and Shipping status.
     </p>
+    </h2>
+    Test Cases:
+    </h>
+    <li>
+    As an employee, I can log into the webpage and able to access this page
+    </li>
+    <li>
+    As an employee, I can adjust inventory.
+    </li>
+    <li>
+    As an employee, I can see inventory
+    </li>
+    <li>
+    As an employee, I can adjust shipping status
+    </li>
+    <li>
+    As an employee, I can adjust address/name
+    </li>
+    <li>
+    As a customer, this page will not be presented to me
+    </li>
+    <p></p>
+    </h2>
+    Page Linking:
+    </h>
+    <li>
+    This page has a link from main page, if user is authenticated as an employee 
+    </li>
+    <li>
+    This page has a logout option
+    </li>
+    <li>
+    This page can return to main page
+    </li>
+    <p></p>
+    
 <img src="Customer_Portal.png" alt="Image description" width="500">
 
 <h1>Profile Page:</h1>
