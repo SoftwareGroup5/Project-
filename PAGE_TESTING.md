@@ -9,24 +9,32 @@ Lucid chart showing the flow of our webpages: <br>
 <p> The <b>Homepage</b> serves as the main entry point for users, providing a welcoming introduction and easy navigation to key sections of the website. 
 </p> <h4> Features:</h4> <p> 
     - <b>Welcome Banner:</b> A visually engaging header with a brief introduction to the website and its offerings <br>
-    - <b>Quick Navigation:</b> Prominent links directing users to the <b>Customer Portal</b>, <b>Products Page</b>, and <b>Profile Page</b>.<br> 
-    - <b>Featured Products & Promotions:</b> Highlighted deals, trending items, or seasonal promotions.<br> 
-    - <b>User Personalization:</b> A section displaying the user’s profile picture, a personalized memo, and set goals (if applicable).<br> </p> 
+    - <b>Quick Navigation:</b> Clearly visible links directing users to the Cart, Products Page, and Profile Page.<br> 
+    - <b>Featured Products & Promotions:</b> Highlighted deals, trending items, promoted items.<br> 
+    - <b>User Personalization:</b> A section displaying the user’s profile picture or login ID to confirm login status.<br> </p> 
 
 <h4> Parameters Needed: </h4> <p> 
-    - User ID / Session Token (if logged in) to personalize content.<br> 
+    - User ID to personalize content (cart).<br> 
     - Featured product data (name, image, price, and promotional details).<br> 
-    - User memo and goals (if available in the database).<br> </p> 
+    - User name.<br> </p> 
 
 <h4> Data Needed to Load Page: </h4> <p> 
-    - User Database (to display personalized content if logged in).<br> - Product Database (to load featured products and promotions).<br> 
-    - Static Assets (homepage banner image, branding elements).<br> </p> 
+    - User Database (to display personalized content if logged in).<br> 
+    - Product Database (to load featured products and promotions).<br> 
+    - Static Assets (homepage banner image).<br> </p> 
 
 <h4> Link Destinations: </h4> <p> 
-    - <b>Customer Portal:</b> Directs employees/vendors to inventory and order management.<br> 
+    - <b>Cart:</b> Takes users to their current shopping cart.<br> 
     - <b>Products Page:</b> Leads customers to browse and purchase items.<br> 
     - <b>Profile Page:</b> Provides access to user-specific details, including past orders and account management.<be>
-    - <b>Cart:</b> A persistent link to review items ready for checkout.<br> </p> 
+<h4>Test Cases:</h4>
+<ul>
+    <li>As a customer, I can access my cart from this page.</li>
+    <li>As a customer, I can access my profile from this page.</li>
+    <li>As a customer, I can access the products page from this page.</li>
+    <li>As an employee, I can access my employee profile from this page.</li>
+    <li>As a customer, this page will show images of featured products.</li>
+</ul>
         <img src="Homepage.png" alt="Homepage Wireframe" width="500">
 
 
