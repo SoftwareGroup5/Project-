@@ -60,6 +60,19 @@ The <b>Products Page</b> displays a catalog of available items with detailed des
     - Product Database<br>
     - product images <br>
     </p>
+<h4> Link Destinations: </h4> <p> 
+    - <b>Home</b> Takes users to Home.<br> 
+    - <b>Cart:</b> Takes users to their Cart.<br> 
+    - <b>login:</b> Provides access to customer or owner portal depending on login token<be>
+<h4>Test Cases:</h4>
+<ul>
+    <li>As a customer, I can access my cart from this page.</li>
+    <li>As a customer, I can access my profile from this page.</li>
+    <li>As a customer, I can add Products to cart</li>
+    <li>As an employee, I can access my employee profile from this page.</li>
+    <li>As a customer, this page will show images prices and item info for all products.</li>
+    <li>As a customer, the product pictures and info will magnify on hover.</li>
+</ul>
     <img src="Products_Page.png" alt="checkout mockup for clients" width="500">
 <h1>Cart:</h1>
 <h4> Features:</h4>
@@ -77,7 +90,19 @@ The <b>Products Page</b> displays a catalog of available items with detailed des
     - images of products <br>
     - user database
 </p>
-
+<h4> Link Destinations: </h4> <p> 
+    - <b>Home</b> Takes users to Home.<br> 
+    - <b>Products Page:</b> Takes users to products page.<br> 
+    - <b>Login:</b> Provides access to customer or owner portal depending on login token<be>
+<h4>Test Cases:</h4>
+<ul>
+    <li>As a customer, I can access the products page from this page.</li>
+    <li>As a customer, I can access my profile from this page.</li>
+    <li>As a customer, I can remove products from cart</li>
+    <li>As an employee, I can access my employee profile from this page.</li>
+    <li>As a customer, this page will show images, prices, customization options, and item info for all products.</li>
+    <li>As a customer, I can make customizations and adjust project details in cart.</li>
+</ul>
 <img src="Cart.png" alt="checkout mockup for clients" width="500">
     
 <h1>Customer (vendor) Portal Page:</h1>
