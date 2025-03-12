@@ -80,7 +80,7 @@ The <b>Products Page</b> displays a catalog of available items with detailed des
 
 <img src="Cart.png" alt="checkout mockup for clients" width="500">
     
-<h1>Customer Portal Page:</h1>
+<h1>Customer (vendor) Portal Page:</h1>
 <p>  
 The Charts will pull from the database to populate
     </p>
@@ -89,7 +89,7 @@ Customer Can adjust Inventory and Shipping status.
     </p>
     </h2>
     Test Cases:
-    </h>
+    </h2>
     <li>
     As an employee, I can log into the webpage and able to access this page
     </li>
@@ -111,7 +111,7 @@ Customer Can adjust Inventory and Shipping status.
     <p></p>
     </h2>
     Page Linking:
-    </h>
+    </h2>
     <li>
     This page has a link from main page, if user is authenticated as an employee 
     </li>
@@ -120,6 +120,65 @@ Customer Can adjust Inventory and Shipping status.
     </li>
     <li>
     This page can return to main page
+    </li>
+    <p></p>
+    </h2>
+    Inventory Parameters:
+    </h2>
+    <li>
+    Countertop Item Name
+    </li>
+    <li>
+    Countertop category
+    </li>
+    <li>
+    Countertop stock amount
+    </li>
+    <li>
+    Open orders
+    </li>
+    <li>
+    Adjusted amount of stock left
+    </li>
+    </h2>
+    Shipping Parameters:
+    </h2>
+    <li>
+    Ship Date
+    </li>
+    <li>
+    Countertop Item Name
+    </li>
+    <li>
+    Customer info
+    </li>
+    <li>
+    Shipping status
+    </li>
+    <p></p>
+    </h2>
+    Inventory Data:
+    </h2>
+    <li>
+    Countertop themes
+    </li>
+    <li>
+    Countertop names
+    </li>
+    <li>
+    Stock amounts
+    </li>
+    </h2>
+    Shipping Data:
+    </h2>
+    <li>
+    Customer info
+    </li>
+    <li>
+    Shipping status
+    </li>
+    <li>
+    Linking to orders
     </li>
     <p></p>
     
