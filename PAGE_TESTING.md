@@ -242,5 +242,21 @@ This page allows users (customers/vendors) to view and manage:
     
 </p>
 
+<h3>Test Cases:</h3>
+
+<p>
+As a customer, I can log into the webpage and access my Profile Page.
+As a customer, I can view my current orders with their status and estimated delivery.
+As a customer, I can view my past orders with dates, totals, and receipts.
+As a customer, I can update my account information (name, email, address).
+As a customer, I can see my cart items and any low-stock warnings.
+As a customer, I will not see vendor/admin links.
+As a vendor, I can log into the webpage and access my Profile Page.
+As a vendor, I can access vendor-specific links (Manage Inventory, Price Updates) that lead to the Client Portal.
+As a vendor, I can still view my own orders and account info.
+As a vendor, I will not see customer-specific cart features.
+
+</p>
+
 <img src="profile_layout.png" alt="Profile Page Wireframe" width="500">
 
