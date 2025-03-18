@@ -18,3 +18,9 @@ Last week we submitted Milestone 3 with our first weekly status report. We also 
 <img src="trello_screenshots/Screenshot 2025-03-10 185051.png" width="500">
 
 Last week we added additional information to the PAGE_TESTING.md document for upcoming Milestone 4. This was mostly testing, data, and parameter information. In our weekly meeting we discussed progress, gave each other feedback, and planned final steps to finish this document for the Thursday deadline. We are going to make some small edits over the next two days and then meet on Wednesday to confirm everything aligns and looks accurate before turning in Milestone 4. After completing this step, we will work on listing our variables so that we can come to next week's meeting and match up variable names to minimize confusion later on. All group members attended the meeting and participated. There are currently no roadblocks in our way.
+
+**Week 10: 3/17/2025**
+
+<img src ="trello_screenshots/Screenshot 2025-03-17 190423.png" width ="500">
+
+Last week we finalized and submitted Milestone 4. We had a brief meeting last Wednesday to review everyone's contributions before submitting. This week we met and planned out our SQL tables in preparation for Milestone 5 - including table names, attributes,attribute data types, and keys. We did this together on zoom using an excel spreadsheet and everyone participated. Moving forwards, everyone is responsible for one table (see trello) and will add this table to the SQL_TESTING.md doc and write the associated testing. We plan to have this mostly completed when we meet on the 31st and can review, ask questions, and make revisions as needed before the April 3rd deadline. The group does not plan to meet over spring break, but we will be in touch via discord as needed.  
