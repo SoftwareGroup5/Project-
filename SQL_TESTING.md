@@ -130,3 +130,40 @@ Actual result: User is navigated to user profile and can see itemized receipt of
 Status: N/A <br>
 Notes: N/A <br>
 Post-conditions: The Order_history table has a valid order_total that persists after the order is placed <br>
+
+## Order_History
+**Table Name:** Order_History <br>
+**Table Description:** Shows order history by customer ID
+<br>
+- customer_id: INT, foreign key linking to customer_table which identifies each customer <br>
+- id_order: INT, primary key linking to orders which is a unque key for ever order <br>
+- order_status: STRING, tracks current status of order, such as (processing, approved, design accepted) <br>
+- date: DATETIME, date showing change in status of order. <br>
+- order_total: Float, decimal value for total price of order <br>
+- order_status: STRING, value that states from a list of options current order status (shipped, recieved, pending) <br>
+
+Expected result: Employee can update order_status and shipping_status <br>
+Actual result: Employee will have full view of order_history <br>
+
+**Test: View order history as an employee** <br>
+Descripttion: Employee can see history of orders <br>
+Pre-condition: Employee is logged into system <br>
+Test steps: <br>
+  1. Employee can navigate to web page
+  2. Employee can view order and shipping status by customer
+  3. Employee can update order or shipping status
+
+
+Expected result: Customer can see overall order price of there order
+Actual result: Customer can see their own order
+
+Expected result: Customer can see updated order_status and shipping_status of there order
+Actual result: Customer can see their own order status
+
+**Test: View order history as an customer** <br>
+Descripttion: Customer can see history of only there order <br>
+Pre-condition: Customer is logged into system <br>
+Test steps: <br>
+  1. Customer can navigate to web page
+  2. Customer can view order and shipping status or there order
+  3. Customer can see total cost of there order, along with address, etc
