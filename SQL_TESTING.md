@@ -45,6 +45,51 @@
 **Post-conditions:** Product display reflects the accurate img_link and prod_price values  
 
 ---
+## Authorization
+**Table Name:** auth_table  
+**Table Description:** Stores information about customers and clients including login and auth 
+
+- id_login: INT, unique identifier for the client or customer (primary key)  
+- atho_level: STRING, client or customer, decides which landing page to show.
+- autho: Boolean, Confirms authorization true or false.  
+- customer_id: INT, unique identifier for the customer (foreign key)
+- products_owned: STRING,  CSV format STRING of owned product ids.
+
+**Primary Key:** id_login  
+**Foreign Keys:** customer_id 
+
+**Test: Verify login** <br>
+Description: check login for bugs <br>
+Pre-conditions: customer or client exist in database <br>
+Test steps: <br>
+  1. client or customer clicks login <br>
+  2. they are redirected to login page <br>
+  3. they provided their login id <br>
+  4. if auth_level = customer last id_order for customer_id is search and populated to cart <br>
+  5. id_login is displayed in profile button in place of login button <br>
+ 
+ Expected result: User should be able to see their id_login and cart <br>
+Actual result: User is able to see their id_login and cart <br>
+Status: N/A <br>
+Notes: N/A <br>
+Post-conditions: The autho boolean is set to TRUE, autho_level is loaded succesfully  <br>
+
+**Test: Verify profile loaded** <br>
+Description: populate profile page for id_login for correct authorization level <br>
+Pre-conditions: customer or client exist in database, customer or client is logged-in  <br>
+Test steps: <br>
+  1. client or customer clicks profile button <br>
+  2. they are redirected to profile page <br>
+  3. if customer, load customer page, last 5 orders, allows loading previous orders to cart <br>
+  4. if client load client page, load owned products, allow inventory updates. <br>
+ 
+Expected result: User should be able to see their profile and previous orders, clients should see their profile and update inventory <br>
+Actual result: User is able to see their profile and previous orders, clients can see their profile and update inventory <br>
+Status: N/A <br>
+Notes: N/A <br>
+Post-conditions: Cart is updated for customers, inventory is updated for clients <br>
+
+---
 
  ## Orders <br>
 **Table Name:** Orders <br>
