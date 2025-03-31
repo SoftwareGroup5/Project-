@@ -1,5 +1,51 @@
 # SQL Testing 
 
+## Products  
+**Table Name:** prod_table  
+**Table Description:** Stores information about products available for purchase  
+
+- prod_name: STRING, name of the product  
+- img_link: STRING, URL to the product image  
+- prod_price: FLOAT, price of a single unit of the product  
+- product_inv: INT, number of items available in inventory  
+- id_product: INT, unique identifier for the product (primary key)  
+
+**Primary Key:** id_product  
+**Foreign Keys:** None  
+
+---
+
+### Test: Retrieve Product Information  
+**Description:** Ensure product details are retrieved from the database  
+**Pre-conditions:** Products are already populated in the database  
+**Test steps:**  
+1. Navigate to the product listing page  
+2. View the list of products  
+3. Click on a product to see its detailed info  
+
+**Expected result:** User should see accurate product details with name, image, price, and inventory  
+**Actual result:** N/A  
+**Status:** N/A  
+**Notes:** N/A  
+**Post-conditions:** Product data is read-only; no modification to the table occurs  
+
+---
+
+### Test: Display Product Image and Price  
+**Description:** Confirm that product images and prices display correctly on product listing and details pages  
+**Pre-conditions:** Products have valid image URLs and price values stored in the table  
+**Test steps:**  
+1. Navigate to the product listing page  
+2. Observe image and price fields  
+
+**Expected result:** Product image renders from the img_link URL and price is formatted properly  
+**Actual result:** N/A  
+**Status:** N/A  
+**Notes:** N/A  
+**Post-conditions:** Product display reflects the accurate img_link and prod_price values  
+
+---
+
  ## Orders <br>
 **Table Name:** Orders <br>
 **Table Description:** Shows the contents for each order 
