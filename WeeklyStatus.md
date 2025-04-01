@@ -24,3 +24,9 @@ Last week we added additional information to the PAGE_TESTING.md document for up
 <img src ="trello_screenshots/Screenshot 2025-03-17 190423.png" width ="500">
 
 Last week we finalized and submitted Milestone 4. We had a brief meeting last Wednesday to review everyone's contributions before submitting. This week we met and planned out our SQL tables in preparation for Milestone 5 - including table names, attributes,attribute data types, and keys. We did this together on zoom using an excel spreadsheet and everyone participated. Moving forwards, everyone is responsible for one table (see trello) and will add this table to the SQL_TESTING.md doc and write the associated testing. We plan to have this mostly completed when we meet on the 31st and can review, ask questions, and make revisions as needed before the April 3rd deadline. The group does not plan to meet over spring break, but we will be in touch via discord as needed.  
+
+**Week 11: 3/31/2025**
+
+<img src ="trello_screenshots/Screenshot 2025-03-31 185016.png" width="500" >
+
+Last week (excluding spring break), we worked on Milestone 5 by adding our respective tables to the SQL_Testing file. 4/5 sections are done so we are just waiting on one final section to be completed this week before the Wednesday deadline. We also reviewed this document in our weekly meeting and determined that we all need to add a more specific function description so that will also happen this week before Wednesday. 4/5 group members attended the meeting so we will fill in the 5th group member via Discord and trello. Our plan for this week is to start writing code. We will all write code to initialize our respective tables and populate with some info to get us started. We confirmed that we will use Render and Flask and will start adding our sql code to our app.py document. If time allows, we will also write some tests to confirm table integrity.  
