@@ -175,52 +175,55 @@ Test steps: <br>
 
 ## Customers  
 **Table Name:** customer_table  
-**Table Description:** Stores customer info used for login, orders, and profile page <br>
+**Table Description:** Stores customer information for orders, login, and profile display  <br>
 
-- id_customer: INT, primary key for the customer <br>
-- first_name: STRING, first name of customer <br>
-- last_name: STRING, last name of customer <br>
-- address: STRING, customer address <br>
+- id_customer: INT, unique identifier for the customer (primary key)  <br>
+- first_name: STRING, customer’s first name  <br>
+- last_name: STRING, customer’s last name  <br>
+- address: STRING, customer’s address  <br>
 
-**Primary Key:** id_customer <br>
-**Foreign Keys:** <br>
-- customer_id in auth_table <br>
-- customer_id in Order_History <br>
+**Primary Key:** id_customer  <br>
+**Foreign Keys:**  <br>
+- customer_id in auth_table  <br>
+- customer_id in Order_History  <br>
 
-**Test: Retrieve Customer Info** <br>
-Description: check customer info loads right <br>
-Pre-conditions: customer exists in database <br>
+**Test: Retrieve Customer Information** <br>
+Description: Ensure customer details are retrieved from the database <br>
+Pre-conditions: Customers already exist in the database <br>
 Test steps: <br>
-1. go to profile page <br>
-2. look up by customer ID <br>
-3. view info <br>
+1. Navigate to the profile or lookup page <br>
+2. Search by customer ID <br>
+3. View the customer information <br>
 
-Expected result: customer name and address show up <br>
-Actual result: customer info shows up <br>
-Post-conditions: no changes made to table <br>
+Expected result: User should see correct name and address for the customer <br>
+Actual result: User is able to see customer details <br>
 
-**Test: Check Order History Link** <br>
-Description: confirm orders link to correct customer <br>
-Pre-conditions: customer has past orders <br>
+Post-conditions: No change to the customer_table <br>
+
+**Test: Verify Order History Link** <br>
+Description: Ensure the customer ID links correctly with the Order_History table <br>
+Pre-conditions: Customer has past orders in Order_History <br>
 Test steps: <br>
-1. go to profile page <br>
-2. show last 5 orders <br>
-3. check they match the customer <br>
+1. Navigate to the profile page <br>
+2. Load the last 5 orders for the logged-in customer <br>
+3. Confirm orders are correctly linked to the customer <br>
 
-Expected result: orders are correct for the customer <br>
-Actual result: correct orders show up <br>
-Post-conditions: orders are just viewed, not changed <br>
+Expected result: Orders appear under the correct customer profile <br>
+Actual result: Orders load correctly for the customer <br>
+
+Post-conditions: Orders remain view-only <br>
 
 **Test: Load Profile After Login** <br>
-Description: show customer info after login <br>
-Pre-conditions: customer is logged in <br>
+Description: Load customer profile information after login <br>
+Pre-conditions: Customer is logged in through auth_table <br>
 Test steps: <br>
-1. click profile button <br>
-2. load customer info using customer_id <br>
-3. show name, address, and orders <br>
+1. Customer clicks profile button <br>
+2. System loads customer_table using customer_id <br>
+3. Profile shows name, address, and recent orders <br>
 
-Expected result: profile shows customer info and last 5 orders <br>
-Actual result: info loads correctly <br>
-Post-conditions: table stays the same, nothing updated <br>
+Expected result: Profile page shows accurate customer info and last 5 orders 
+Actual result: Profile is loaded with correct details <br>
+
+Post-conditions: Profile is read-only, no updates to customer_table <br> 
 
 
