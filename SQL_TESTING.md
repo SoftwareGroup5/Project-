@@ -116,6 +116,8 @@ Status: N/A <br>
 Notes: N/A <br>
 Post-conditions: The Order_history table has a valid order_total when in-cart status is true  <br>
 
+Function to do this: sum all total prices in rows (of this table) for the order_id where customer_id matches current customer and order_status is "in cart" (of the order_history table)
+
 **Test: View Itemized Order History** <br>
 Description: View an order history that includes itemized list of products in the order <br>
 Pre-conditions: Customer placed an order <br>
@@ -130,6 +132,8 @@ Actual result: User is navigated to user profile and can see itemized receipt of
 Status: N/A <br>
 Notes: N/A <br>
 Post-conditions: The Order_history table has a valid order_total that persists after the order is placed <br>
+
+Function to do this: show rows in orders where customer_id matches current customer, status is "ordered", and group by order_id
 
 ## Order_History
 **Table Name:** Order_History <br>
