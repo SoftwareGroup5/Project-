@@ -167,3 +167,56 @@ Test steps: <br>
   1. Customer can navigate to web page
   2. Customer can view order and shipping status or there order
   3. Customer can see total cost of there order, along with address, etc
+
+
+## Customers  
+**Table Name:** customer_table  
+**Table Description:** Stores customer info used for login, orders, and profile page <br>
+
+- id_customer: INT, primary key for the customer <br>
+- first_name: STRING, first name of customer <br>
+- last_name: STRING, last name of customer <br>
+- address: STRING, customer address <br>
+
+**Primary Key:** id_customer <br>
+**Foreign Keys:** <br>
+- customer_id in auth_table <br>
+- customer_id in Order_History <br>
+
+**Test: Retrieve Customer Info** <br>
+Description: check customer info loads right <br>
+Pre-conditions: customer exists in database <br>
+Test steps: <br>
+1. go to profile page <br>
+2. look up by customer ID <br>
+3. view info <br>
+
+Expected result: customer name and address show up <br>
+Actual result: customer info shows up <br>
+Post-conditions: no changes made to table <br>
+
+**Test: Check Order History Link** <br>
+Description: confirm orders link to correct customer <br>
+Pre-conditions: customer has past orders <br>
+Test steps: <br>
+1. go to profile page <br>
+2. show last 5 orders <br>
+3. check they match the customer <br>
+
+Expected result: orders are correct for the customer <br>
+Actual result: correct orders show up <br>
+Post-conditions: orders are just viewed, not changed <br>
+
+**Test: Load Profile After Login** <br>
+Description: show customer info after login <br>
+Pre-conditions: customer is logged in <br>
+Test steps: <br>
+1. click profile button <br>
+2. load customer info using customer_id <br>
+3. show name, address, and orders <br>
+
+Expected result: profile shows customer info and last 5 orders <br>
+Actual result: info loads correctly <br>
+Post-conditions: table stays the same, nothing updated <br>
+
+
