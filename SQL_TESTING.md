@@ -171,8 +171,47 @@ Test steps: <br>
   1. Customer can navigate to web page
   2. Customer can view order and shipping status or there order
   3. Customer can see total cost of there order, along with address, etc
+**API: Customer/Employee Portal - INVENTORY** <br>
 
+Purpose:<br>
+Display current inventory<br>
 
+Authentication from auth_table (decide if employee or customer) <br>
+
+Behavior:<br>
+If user is an Employee:<br>
+<li><strong> API displays store_inventory </strong></li>
+    <li>API pulls all records from order_history</li>
+    <li>API joins order_history with product_table to include:</li>
+    <ul>
+    <li>Product Name</li>
+    <li>theme</li>
+    <li>Image Link (to display image</li>
+    </ul>
+If user is an Customer:<br>
+Does nothing, displays nothing<br>
+<br>
+**API: Customer/Employee Portal - SHIPPING STATUS** <br>
+
+Purpose:<br>
+To track order and shipping status.<br>
+
+Authentication from auth_table (decide if employee or customer) <br>
+
+If user is an Employee:<br>
+<li><strong> API displays order_status </strong></li>
+    <li>API pulls all records from order_history</li>
+    <li>API joins order_history with product_table to include:</li>
+    <ul>
+    <li>Product Name</li>
+    </ul>
+    <li>API joins order_history with customer_table to include:</li>
+    <ul>
+    <li>Customer Name (first and last)</li>
+    <li>Customer Address</li>
+    </ul>
+    <li>API allows to adjust shipping and order status
+<br>
 ## Customers  
 **Table Name:** customer_table  
 **Table Description:** Stores customer information for orders, login, and profile display  <br>
