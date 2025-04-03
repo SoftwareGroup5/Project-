@@ -65,13 +65,27 @@
 **Table Description:** Stores information about customers and clients including login and auth 
 
 - id_login: INT, unique identifier for the client or customer (primary key)  
-- atho_level: STRING, client or customer, decides which landing page to show.
-- autho: Boolean, Confirms authorization true or false.  
+- auth_level: STRING, client or customer, decides which landing page to show.
+- auth: Boolean, Confirms authorization true or false.  
 - customer_id: INT, unique identifier for the customer (foreign key)
 - products_owned: STRING,  CSV format STRING of owned product ids.
 
 **Primary Key:** id_login  
 **Foreign Keys:** customer_id 
+
+**Function: Authorization Login** <br>
+
+Purpose:<br>
+check for valid login<br>
+
+check Login info against Authentication from auth_table (decide if employee or customer) <br>
+
+Behavior:<br>
+Check user inputted login again login data in auth_table<br>
+Return customer details: auth_level, auth, customer_id, products_owned <br>
+swap login button for profile, directing to either customer or employee portal <br>
+redirect to previous page. <br>
+
 
 **Test: Verify login** <br>
 Description: check login for bugs <br>
