@@ -212,8 +212,9 @@ If user is an Employee:<br>
     </ul>
     <li>API allows to adjust shipping and order status
 <br>
-## Customers  
-**Table Name:** customer_table  
+      
+## Customer Table  
+**Table Name:** customer_table <br> 
 **Table Description:** Stores customer information for orders, login, and profile display  <br>
 
 - id_customer: INT, unique identifier for the customer (primary key)  <br>
