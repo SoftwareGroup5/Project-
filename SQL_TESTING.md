@@ -14,6 +14,21 @@
 **Foreign Keys:** None  
 
 ---
+### Function: Retrieve All Products for Listing Page
+- Purpose: Display all products available for purchase on the product listing page.
+- Query:
+  sql
+  SELECT id_product, prod_name, img_link, prod_price, product_inv 
+  FROM prod_table;
+
+#### Function: Retrieve One Product by ID
+- Purpose: Fetch detailed information for a specific product using its unique ID.
+- Query:
+  sql
+  SELECT prod_name, img_link, prod_price, product_inv
+  FROM prod_table
+  WHERE id_product = (product id for selected single product);
+---
 
 ### Test: Retrieve Product Information  
 **Description:** Ensure product details are retrieved from the database  
