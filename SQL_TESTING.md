@@ -256,6 +256,14 @@ If user is an Employee:<br>
 - customer_id in auth_table  <br>
 - customer_id in Order_History  <br>
 
+**Function: Retrieve All Customers** <br>
+Purpose: Display all customers for an employee/administrator <br>
+Query: `SELECT id_customer, first_name, last_name, address FROM customer_table;` <br>
+
+**Function: Retrieve One Customer by ID** <br>
+Purpose: Fetch detailed information for a specific customer on their profile page <br>
+Query: `SELECT id_customer, first_name, last_name, address FROM customer_table WHERE id_customer = (customer's ID);` <br>
+
 **Test: Retrieve Customer Information** <br>
 Description: Ensure customer details are retrieved from the database <br>
 Pre-conditions: Customers already exist in the database <br>
