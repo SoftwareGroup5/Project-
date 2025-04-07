@@ -22,7 +22,8 @@ def test_orders(DB):
 
 
 if __name__ == "__main__":
-    
+    #checks if db exist and clears if so"
+    print(dbAPI.delete_db(myDB))
     #create database with name from above 
     dbAPI.create(myDB)
 
@@ -31,3 +32,10 @@ if __name__ == "__main__":
 
     #prints out entries in each table so we can visually confirm they're populating
     test_orders(myDB)
+    
+    #fills auth_table
+    print(dbAPI.fill_auth(myDB))
+    
+    #test authorize
+    print(dbAPI.authorize(myDB, 'admin', 'root'))
+    

@@ -64,11 +64,12 @@
 **Table Name:** auth_table  
 **Table Description:** Stores information about customers and clients including login and auth 
 
-- id_login: INT, unique identifier for the client or customer (primary key)  
-- auth_level: STRING, client or customer, decides which landing page to show.
+- id_login: VARCHAR(25), unique identifier for the client or customer (primary key)
+- pass_login: VARCHAR(25), client or customer password.
+- auth_level: VARCHAR(5), client or customer, decides which landing page to show.
 - auth: Boolean, Confirms authorization true or false.  
 - customer_id: INT, unique identifier for the customer (foreign key)
-- products_owned: STRING,  CSV format STRING of owned product ids.
+- products_owned: TEXT,  CSV format STRING of owned product ids.
 
 **Primary Key:** id_login  
 **Foreign Keys:** customer_id 
