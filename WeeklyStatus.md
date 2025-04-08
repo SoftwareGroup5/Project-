@@ -30,3 +30,10 @@ Last week we finalized and submitted Milestone 4. We had a brief meeting last We
 <img src ="trello_screenshots/Screenshot 2025-03-31 185016.png" width="500" >
 
 Last week (excluding spring break), we worked on Milestone 5 by adding our respective tables to the SQL_Testing file. 4/5 sections are done so we are just waiting on one final section to be completed this week before the Wednesday deadline. We also reviewed this document in our weekly meeting and determined that we all need to add a more specific function description so that will also happen this week before Wednesday. 4/5 group members attended the meeting so we will fill in the 5th group member via Discord and trello. Our plan for this week is to start writing code. We will all write code to initialize our respective tables and populate with some info to get us started. We confirmed that we will use Render and Flask and will start adding our sql code to our app.py document. If time allows, we will also write some tests to confirm table integrity.  
+
+**Week 12: 4/7/2025**
+
+<img src="trello_screenshots/Screenshot 2025-04-07 185312.png" width="500">
+
+Last week, we set up at the app folder and started to develop our sqlite database. Most group members started to add SQL code to create their tables and functions to fill in those tables with some starter data. The task for this week is to finish up creating tables, populating tables with starter data, and writing functions. We are all assigned a specific page that we can focus on writing the functions for, and the coordinating unit tests. If anyone has extra time this week, we will also start setting up the flask framework and working on our individual pages. Everyone attended the meeting.
+
