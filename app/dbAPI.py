@@ -44,6 +44,24 @@ def create (db):
     
     return 
 
+
+    #create prod_table to store product data
+    c.execute("""CREATE TABLE IF NOT EXISTS prod_table (
+                  id_product INT PRIMARY KEY,
+                  prod_name TEXT,
+                  img_link TEXT,
+                  prod_price FLOAT,
+                  product_inv INT
+            );""")
+    
+    conn.commit()
+    conn.close()
+    
+    return 
+
+
+
+
 #this can be a fill for all tables or we can do 1 per table and then call them all in the test file, doesn't matter to me -nicole
 #right now its specific for the orders table
 
@@ -75,6 +93,48 @@ def fill_auth(db):
     conn.close()
     return "DB auth_table filled with sample data"
 
+
+def fill_products(db):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    test_value_prod = [
+        #(id_product ,product name,image link, product price, product inventory, product inv) 
+        # Nature
+        (1, 'Treering Counter', 'Project-/Images/Nature/treering.png', 14.99, 10),
+        (2, 'Leaf Branches Decor', 'Project-/Images/Nature/leaf branches.webp', 11.25, 8),
+        (3, 'Jungle-Themed Kitchen', 'Project-/Images/Nature/jungle-themed-kitchen.png', 25.50, 5),
+        (4, 'Sinkhole Basin', 'Project-/Images/Nature/sinkhole.png', 30.00, 4),
+        (5, 'Water Moss Texture', 'Project-/Images/Nature/water moss.webp', 13.45, 6),
+        (6, 'Snowy Counter', 'Project-/Images/Nature/snowycounter.png', 18.75, 9),
+        (7, 'Mountain Design', 'Project-/Images/Nature/mountains.png', 22.00, 3),
+
+        # Animal
+        (8, 'Leopard Print Plate', 'Project-/Images/Animal/leopard.png', 19.95, 7),
+        (9, 'Elephant-Themed Kitchen', 'Project-/Images/Animal/elephant-themed-kitchen.png', 29.99, 5),
+        (10, 'Panda Print Tray', 'Project-/Images/Animal/panda.png', 16.25, 6),
+        (11, 'Puppy Mug', 'Project-/Images/Animal/puppy.png', 12.99, 10),
+
+        # JunkFood
+        (12, 'Chicken Wings Dish', 'Project-/Images/JunkFood/chicken_wings.png', 9.50, 12),
+        (13, 'Potato Chip Plate', 'Project-/Images/JunkFood/potatoe_chip.png', 7.25, 15),
+        (14, 'French Fries Bowl', 'Project-/Images/JunkFood/french_fries.png', 8.99, 14),
+        (15, 'Cheese Sticks Tray', 'Project-/Images/JunkFood/cheese_sticks.png', 10.50, 9),
+
+        # Industrial
+        (16, 'Concrete Texture', 'Project-/Images/Industrial/concrete.webp', 13.00, 8),
+        (17, 'CS Countertop', 'Project-/Images/Industrial/ComputerScienceCounter.png', 27.75, 4),
+        (18, 'Brewhouse Surface', 'Project-/Images/Industrial/brewhouse.png', 24.00, 6),
+        (19, 'Brick Design Panel', 'Project-/Images/Industrial/brick.png', 20.50, 5),
+        (20, 'Steel Factory Look', 'Project-/Images/Industrial/stainless-steel-factory.png', 31.25, 3),
+        (21, 'Bikeshop Bar', 'Project-/Images/Industrial/bikeshop.png', 23.99, 7)
+    ]
+    c.executemany(''' INSERT INTO prod_table
+                      ( id_product, prod_name, img_link, prod_price, product_inv )
+                      VALUES (?, ?, ?, ?, ?)''', test_value_prod)
+    conn.commit()
+    conn.close()
+    return "DB prod_table filled with sample data"
+
 #functions
 def addOrders(db, order_id, product_id, quantity):
     #write this later - need to pull from other tables 
@@ -103,6 +163,9 @@ def delete_db(db):
         return f"Database '{db}' deleted"
     else:
         return f"Database '{db}' does not exist"
+    
+    
+
 
 
     
