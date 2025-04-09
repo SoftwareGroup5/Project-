@@ -20,6 +20,15 @@ def test_orders(DB):
         print(row)
     return 
 
+def test_customers(DB):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+    data = c.execute("SELECT * FROM customer_table")
+    print("Table: customer_table")
+    for row in data:
+        print(row)
+    return
+
 
 if __name__ == "__main__":
     #checks if db exist and clears if so"
@@ -41,4 +50,10 @@ if __name__ == "__main__":
     
     #fills order_history
     print(dbAPI.fill_order_history(myDB))
+
+    #fill customer_table
+    print(dbAPI.fill_customers(myDB))
+
+    #print out entries in customer_table to confirm
+    test_customers(myDB)
     
