@@ -39,3 +39,6 @@ if __name__ == "__main__":
     #test authorize
     print(dbAPI.authorize(myDB, 'admin', 'root'))
     
+    #fills order_history
+    print(dbAPI.fill_order_history(myDB))
+    

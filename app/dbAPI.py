@@ -39,10 +39,10 @@ def create (db):
                   PRIMARY KEY (id_login),
                   FOREIGN KEY (customer_id) REFERENCES order_history(id_order)
             );""")
-    conn.commit()
-    conn.close()
+#     conn.commit()
+#     conn.close()
     
-    return 
+#     return 
 
 
     #create prod_table to store product data
@@ -54,11 +54,25 @@ def create (db):
                   product_inv INT
             );""")
     
+#     conn.commit()
+#     conn.close()
+    
+#     return 
+
+    #create prod_table to store product data
+    c.execute("""CREATE TABLE IF NOT EXISTS order_history_table (
+                  id_order INTEGER PRIMARY KEY,
+                  customer_id INTEGER,
+                  order_status TEXT,
+                  date TEXT,
+                  shipping_status TEXT,
+                  FOREIGN KEY (customer_id) REFERENCES customer_table(id_customer)
+            );""")
+    
     conn.commit()
     conn.close()
     
     return 
-
 
 
 
@@ -135,6 +149,25 @@ def fill_products(db):
     conn.close()
     return "DB prod_table filled with sample data"
 
+def fill_order_history(db):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    test_order_history = [
+        ('1', '123', 'Open', '2025/01/02', 'Shipped'),
+        ('2', '234', 'Closed', '2024/01/02', 'Received'),
+        ('3', '345', 'Processign', '2025/03/28', 'Pending'),
+        ('4', '456', 'Open', '2025/01/02', 'Staged'),
+        ('5', '567', 'Closed', '2024/06/02', 'Received'),
+        ('6', '678', 'Closed', '2024/08/02', 'Received')
+        ]
+    c.executemany(''' INSERT INTO order_history_table
+                      ( id_order, customer_id, order_status, date, shipping_status )
+                      VALUES (?, ?, ?, ?, ?)''', test_order_history)            
+    conn.commit()
+    conn.close()
+    return "DB order_history filled with sample data"
+
+
 #functions
 def addOrders(db, order_id, product_id, quantity):
     #write this later - need to pull from other tables 
@@ -164,7 +197,7 @@ def delete_db(db):
     else:
         return f"Database '{db}' does not exist"
     
-    
+
 
 
 
