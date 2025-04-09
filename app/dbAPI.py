@@ -29,6 +29,16 @@ def create (db):
              #);""")
     
     ### more tables .....
+
+        #customer_table
+    c.execute("""CREATE TABLE IF NOT EXISTS customer_table (
+                  id_customer INT PRIMARY KEY,
+                  first_name TEXT,
+                  last_name TEXT,
+                  address TEXT
+            );""")
+
+    
     c.execute("""CREATE TABLE IF NOT EXISTS auth_table (
                   id_login VARCHAR(25),
                   pass_login VARCHAR(25),
@@ -166,6 +176,23 @@ def fill_order_history(db):
     conn.commit()
     conn.close()
     return "DB order_history filled with sample data"
+
+ 
+def fill_customers(db):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    test_value_customers = [
+        (101, 'John', 'Doe', '123 Maple St'),
+        (102, 'Jane', 'Smith', '456 Oak Rd'),
+        (103, 'Alex', 'Taylor', '789 Pine Ln')
+    ]
+    c.executemany('''
+        INSERT INTO customer_table (id_customer, first_name, last_name, address)
+        VALUES (?, ?, ?, ?)
+    ''', test_value_customers)
+    conn.commit()
+    conn.close()
+    return "DB customer_table filled with sample data"
 
 
 #functions
