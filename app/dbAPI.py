@@ -194,6 +194,15 @@ def fill_customers(db):
     conn.close()
     return "DB customer_table filled with sample data"
 
+def get_customer_by_id(db, customer_id):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT id_customer, first_name, last_name, address FROM customer_table WHERE id_customer = ?", (customer_id,))
+    customer = c.fetchone()
+    conn.close()
+    return customer
+
+
 
 #functions
 def addOrders(db, order_id, product_id, quantity):
