@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Premium CounterTop Solutions</h1>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('products') }}">Products</a>
+                <a href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="welcome-banner">
+        <div class="container">
+            <div class="banner-content">
+                <h2>Welcome to Premium CounterTop Solutions (Demo Store)</h2>
+                <p>Discover amazing products at incredible prices!</p>
+                <a href="{{ url_for('products') }}" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-us">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>We are a small warehouse supplying custom dream countertop solutions. Our team of experts is dedicated to providing high-quality materials and excellent craftsmanship to transform your kitchen or bathroom into the space of your dreams.</p>
+                <p>With years of experience in the industry, we pride ourselves on our attention to detail and commitment to customer satisfaction. From selection to installation, we're with you every step of the way.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+      <h2>Meet The Team</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <h3>Stephen Tynan</h3>
+          <p>Co-Dev</p>
+        </div>
+        <div class="team-member">
+          <h3>Nicole Cosmany</h3>
+          <p>Co-Dev</p>
+        </div>
+        <div class="team-member">
+          <h3>Patrick </h3>
+          <p>Co-Dev</p>
+        </div>
+        <div class="team-member">
+          <h3>Cole</h3>
+          <p>Co-Dev</p>
+        </div>
+        <div class="team-member">
+          <h3>Evan</h3>
+          <p>Co-Dev</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <p>&copy; 2025 Online Store. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
