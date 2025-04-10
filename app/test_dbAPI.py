@@ -29,6 +29,11 @@ def test_customers(DB):
         print(row)
     return
 
+def test_get_customer_by_id(DB, customer_id):
+    customer = dbAPI.get_customer_by_id(DB, customer_id)
+    print(f"Customer with id {customer_id}: {customer}")
+
+
 
 if __name__ == "__main__":
     #checks if db exist and clears if so"
@@ -56,4 +61,9 @@ if __name__ == "__main__":
 
     #print out entries in customer_table to confirm
     test_customers(myDB)
+
+
+    #prints the retrieved customer record for the specified customer ID
+    test_get_customer_by_id(myDB, 101)
+
     
