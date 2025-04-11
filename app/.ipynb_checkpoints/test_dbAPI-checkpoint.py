@@ -33,6 +33,9 @@ def test_get_customer_by_id(DB, customer_id):
     customer = dbAPI.get_customer_by_id(DB, customer_id)
     print(f"Customer with id {customer_id}: {customer}")
 
+def test_get_cart_for_customer(DB, customer_id):
+    print("Testing cart retrieval for customer:", customer_id)
+    print(dbAPI.get_cart_for_customer(DB, customer_id))
 
 
 if __name__ == "__main__":
@@ -68,5 +71,5 @@ if __name__ == "__main__":
 
     #prints the retrieved customer record for the specified customer ID
     test_get_customer_by_id(myDB, 101)
-
     
+    test_get_cart_for_customer(myDB, 345)

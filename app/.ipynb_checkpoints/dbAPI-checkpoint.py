@@ -143,7 +143,7 @@ def fill_order_history(db):
     test_order_history = [
         ('1', '123', 'Open', '2025/01/02', 'Shipped'),
         ('2', '234', 'Closed', '2024/01/02', 'Received'),
-        ('3', '345', 'Processign', '2025/03/28', 'Pending'),
+        ('3', '345', 'Processing', '2025/03/28', 'Pending'),
         ('4', '456', 'Open', '2025/01/02', 'Staged'),
         ('5', '567', 'Closed', '2024/06/02', 'Received'),
         ('6', '678', 'Closed', '2024/08/02', 'Received')
@@ -205,6 +205,41 @@ def insert_order(db, order_id, product_id, quantity):
     conn.commit()
     conn.close()
     return
+
+def get_cart_for_customer(DB, customer_id):
+    conn = sqlite3.connect(DB)
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+
+    # Get the current pending order ID for this customer
+    c.execute("""
+        SELECT id_order FROM order_history_table
+        WHERE customer_id = ? AND shipping_status = 'Pending'
+    """, (customer_id,))
+    result = c.fetchone()
+
+    if not result:
+        conn.close()
+        return []
+
+    order_id = result['id_order']
+
+    # Get cart items from orders + product name
+    c.execute("""
+        SELECT p.prod_name AS name,
+               o.quantity,
+               ROUND(o.total_price / o.quantity, 2) AS price,  -- price per unit
+               o.total_price
+        FROM orders o
+        JOIN prod_table p ON o.product_id = p.id_product
+        WHERE o.order_id = ?
+    """, (order_id,))
+
+    cart_items = [dict(row) for row in c.fetchall()]
+    conn.close()
+    return cart_items
+
+
 
 
 def get_customer_by_id(db, customer_id):
