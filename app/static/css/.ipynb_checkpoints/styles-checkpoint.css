@@ -1,0 +1,505 @@
+/* Claude ai coded stylesheet to improve visual appeal of website*/
+
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+:root {
+  --dark-bg: #0a0a12; /* Darker background */
+  --darker-purple: #1a0033;
+  --main-purple: #6600cc;
+  --light-purple: #9933ff;
+  --neon-purple: #cc33ff;
+  --accent-color: #ff00cc;
+  --text-light: #f0f0ff;
+  --text-dark: #0a0a14;
+}
+
+body {
+  background-color: #080810; /* Almost black background */
+  color: var(--text-light);
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Header and Navigation Styling */
+header {
+  background-color: rgba(8, 8, 16, 0.9); /* Darker header */
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--main-purple);
+  box-shadow: 0 0 15px var(--main-purple); /* Purple glow */
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: -1px;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px var(--main-purple); /* Purple text glow */
+}
+
+.logo h1::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--main-purple), var(--accent-color));
+  bottom: -5px;
+  left: 0;
+  transform: skewX(-20deg);
+  box-shadow: 0 0 8px var(--main-purple); /* Purple glow */
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 600;
+  position: relative;
+  padding: 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px var(--light-purple); /* Purple text glow */
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--accent-color); /* Purple glow */
+}
+
+.nav-links a:hover {
+  color: var(--neon-purple);
+}
+
+.nav-links a:hover::before {
+  width: 100%;
+}
+
+/* Welcome Banner Styling with Hover and Glow - keeping original text */
+.welcome-banner {
+  padding: 40px 0; /* Reduced padding */
+  background: linear-gradient(135deg, #0e0120 0%, #050510 100%); /* Darker background */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+}
+
+.welcome-banner:hover {
+  box-shadow: 0 0 30px var(--main-purple);
+  border: 1px solid var(--light-purple);
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, rgba(153, 51, 255, 0.1) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.welcome-banner .container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  z-index: 2;
+  position: relative;
+  align-items: center; /* Center align the content */
+  gap: 20px; /* Add spacing between elements */
+}
+
+.banner-content {
+  width: 100%; /* Full width */
+  max-width: 800px;
+  text-align: center; /* Center the text */
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+  padding: 20px 0; /* Add some padding */
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+  }
+}
+
+.banner-content h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, var(--light-purple), var(--neon-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  text-shadow: 0 0 15px var(--main-purple); /* Strong purple glow */
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: rgba(240, 240, 255, 0.8);
+  text-shadow: 0 0 8px var(--light-purple); /* Purple text glow */
+}
+
+.banner-content .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, var(--main-purple), var(--accent-color));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  box-shadow: 0 0 15px var(--main-purple); /* Purple button glow */
+  margin-bottom: 20px; /* Reduced space before the SVG */
+}
+
+.banner-content .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.banner-content .btn:hover::before {
+  left: 100%;
+}
+
+/* UPDATED: Horizontal Images Row Styling */
+.banner-image {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.banner-image img {
+  width: 23%; /* Slightly less than 25% to account for gap */
+  height: 200px; /* Fixed height for uniform appearance */
+  object-fit: cover;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+  border: 2px solid var(--darker-purple);
+  filter: brightness(0.85) saturate(1.2) drop-shadow(0 0 10px rgba(102, 0, 204, 0.4));
+}
+
+/* Hover effects for images */
+.banner-image img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.4) drop-shadow(0 0 15px rgba(204, 51, 255, 0.6));
+  border-color: var(--neon-purple);
+  z-index: 5;
+}
+
+/* Media query for tablet screens */
+@media (max-width: 991px) {
+  .banner-image {
+    flex-wrap: wrap;
+    max-width: 700px;
+  }
+  
+  .banner-image img {
+    width: 47%; /* Two images per row on tablets */
+    height: 180px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Media query for mobile screens */
+@media (max-width: 575px) {
+  .banner-image {
+    flex-direction: column;
+    max-width: 95%;
+  }
+  
+  .banner-image img {
+    width: 100%; /* Full width on mobile */
+    height: 200px;
+    margin-bottom: 10px;
+  }
+}
+
+/* SVG Styles - Only handling outer container hover, not SVG elements */
+.banner-image svg {
+  width: 100%;
+  height: auto;
+  display: block; /* Prevent extra space below */
+  filter: drop-shadow(0 0 20px rgba(102, 0, 204, 0.4)); /* Stronger purple glow */
+}
+
+/* About Us Section Styling */
+.about-us {
+  padding: 60px 0; /* Reduced padding */
+  background-color: #0c0018; /* Darker background */
+  position: relative;
+  overflow: hidden;
+}
+
+.about-us::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--light-purple) 0%, transparent 70%);
+  opacity: 0.1;
+  filter: blur(50px);
+  z-index: 1;
+}
+
+.about-us h2 {
+  text-align: center; /* Center the heading */
+  margin-bottom: 40px; /* Reduced margin */
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-light);
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px var(--main-purple); /* Purple text glow */
+}
+
+.about-us h2::after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 5px;
+  background: var(--accent-color);
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px var(--accent-color); /* Purple glow */
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center; /* Center text */
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.about-content p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  position: relative;
+  padding: 0 20px; /* Equal padding */
+  text-shadow: 0 0 5px var(--light-purple); /* Purple text glow */
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer Styling */
+.simple-footer {
+  background-color: #060610; /* Darker background */
+  color: rgba(240, 240, 255, 0.7);
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid rgba(102, 0, 204, 0.3);
+  box-shadow: 0 0 20px var(--main-purple); /* Purple glow */
+}
+
+.team-section {
+    padding: 60px 0;
+    background-color: #080810; /* Match the body background */
+    position: relative;
+  }
+  
+  .team-section .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-light);
+    position: relative;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px var(--main-purple);
+  }
+  
+  .team-section h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 5px;
+    background: var(--accent-color);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--accent-color);
+  }
+  
+ /* Team Members Section Styling */
+.team-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #080810;
+  }
+  
+  /* Main heading with glow effect */
+  .team-section h2 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    color: #f0f0ff;
+    text-shadow: 0 0 15px var(--main-purple);
+    position: relative;
+  }
+  
+  /* Purple underline effect */
+  .team-section h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 10px auto;
+    box-shadow: 0 0 10px var(--accent-color);
+  }
+  
+  /* This is the critical part - create the horizontal row */
+  .team-members {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+  }
+  
+  .team-member {
+    flex: 0 0 auto;
+    width: 180px;
+    text-align: center;
+  }
+  
+  /* Style the names */
+  .team-member h3 {
+    color: var(--light-purple);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-shadow: 0 0 8px var(--main-purple);
+  }
+  
+  /* Style the roles */
+  .team-member p {
+    color: var(--text-light);
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 767px) {
+    .team-members {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .team-member {
+      width: 45%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .team-member {
+      width: 100%;
+    }
+  }
+
+/* Override container styles for specific sections */
+.about-us .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Welcome banner specific adjustments for proper content fitting */
+@media (min-width: 768px) {
+  .welcome-banner .container {
+      padding: 20px 0;
+  }
+  
+  .banner-image {
+      max-width: 700px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-content h2 {
+      font-size: 2.5rem;
+  }
+  
+  .banner-image {
+      max-width: 95%;
+  }
+  
+  .welcome-banner {
+      padding: 30px 0;
+  }
+}

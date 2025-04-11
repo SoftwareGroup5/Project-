@@ -19,7 +19,7 @@ def login():
 
 @app.route('/cart')
 def cart():
-    return 'cart'
+    return render_template('cart.html')
 
 @app.route('/profile_client')
 def profile_client():
