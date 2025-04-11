@@ -14,22 +14,10 @@ def create (db):
               quantity INT NOT NULL, 
               total_price DECIMAL(10,2),
               PRIMARY KEY (order_id, product_id),
-              FOREIGN KEY (product_id) REFERENCES products(id_product),
-              FOREIGN KEY (order_id) REFERENCES order_history(id_order)
+              FOREIGN KEY (product_id) REFERENCES prod_table(id_product),
+              FOREIGN KEY (order_id) REFERENCES order_history_table(id_order)
              );""")
-    #create trigger so orders table calculates total price whenever a new item added 
-    #c.execute("""CREATE TRIGGER calculate_total_price
-            #AFTER INSERT ON orders
-            #FOR EACH ROW
-            #BEGIN
-              #UPDATE orders
-              #SET total_price = NEW.quantity * (SELECT unit_price FROM products WHERE products.id_product = NEW.product_id)
-              #WHERE order_id = NEW.order_id;
-            #END;
-             #);""")
     
-    ### more tables .....
-
         #customer_table
     c.execute("""CREATE TABLE IF NOT EXISTS customer_table (
                   id_customer INT PRIMARY KEY,
@@ -49,11 +37,6 @@ def create (db):
                   PRIMARY KEY (id_login),
                   FOREIGN KEY (customer_id) REFERENCES order_history(id_order)
             );""")
-#     conn.commit()
-#     conn.close()
-    
-#     return 
-
 
     #create prod_table to store product data
     c.execute("""CREATE TABLE IF NOT EXISTS prod_table (
@@ -64,11 +47,6 @@ def create (db):
                   product_inv INT
             );""")
     
-#     conn.commit()
-#     conn.close()
-    
-#     return 
-
     #create prod_table to store product data
     c.execute("""CREATE TABLE IF NOT EXISTS order_history_table (
                   id_order INTEGER PRIMARY KEY,
@@ -194,6 +172,41 @@ def fill_customers(db):
     conn.close()
     return "DB customer_table filled with sample data"
 
+#functions
+def fill_orders(db):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    
+    insert_order(db, 1, 3, 1)
+    insert_order(db, 1, 2, 1)
+    insert_order(db, 2, 1, 1)
+    insert_order(db, 3, 18, 4)
+    insert_order(db, 3, 12, 2)
+    insert_order(db, 4, 5, 10)
+
+    conn.commit()
+    conn.close()
+    return 
+
+
+def insert_order(db, order_id, product_id, quantity):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    #get the unit price for product
+    c.execute("SELECT prod_price FROM prod_table WHERE id_product = ?", (product_id,))
+    result = c.fetchone()
+    unit_price = result[0]
+    total_price = quantity * unit_price
+
+    # Insert into orders with total_price calculated
+    c.execute("INSERT INTO orders (order_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)",
+              (order_id, product_id, quantity, total_price))
+
+    conn.commit()
+    conn.close()
+    return
+
+
 def get_customer_by_id(db, customer_id):
     conn = sqlite3.connect(db)
     c = conn.cursor()
@@ -202,12 +215,6 @@ def get_customer_by_id(db, customer_id):
     conn.close()
     return customer
 
-
-
-#functions
-def addOrders(db, order_id, product_id, quantity):
-    #write this later - need to pull from other tables 
-    return 
 
 
 #functions for login

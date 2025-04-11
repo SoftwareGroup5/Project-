@@ -20,22 +20,53 @@ def test_orders(DB):
         print(row)
     return 
 
+def test_customers(DB):
+    conn = sqlite3.connect(DB)
+    c = conn.cursor()
+    data = c.execute("SELECT * FROM customer_table")
+    print("Table: customer_table")
+    for row in data:
+        print(row)
+    return
+
+def test_get_customer_by_id(DB, customer_id):
+    customer = dbAPI.get_customer_by_id(DB, customer_id)
+    print(f"Customer with id {customer_id}: {customer}")
+
+
 
 if __name__ == "__main__":
     #checks if db exist and clears if so"
     print(dbAPI.delete_db(myDB))
     #create database with name from above 
     dbAPI.create(myDB)
-
-    #populate different tables in myDB with data
-    dbAPI.fill_orders(myDB)
-
-    #prints out entries in each table so we can visually confirm they're populating
-    test_orders(myDB)
     
     #fills auth_table
     print(dbAPI.fill_auth(myDB))
     
     #test authorize
     print(dbAPI.authorize(myDB, 'admin', 'root'))
+    
+    #fills order_history
+    print(dbAPI.fill_order_history(myDB))
+
+    #fill customer_table
+    print(dbAPI.fill_customers(myDB))
+    
+    #fill product
+    dbAPI.fill_products(myDB)
+
+    #print out entries in customer_table to confirm
+    test_customers(myDB)
+    
+    #fill orders table 
+    dbAPI.fill_orders(myDB)
+
+    #prints out entries in each table so we can visually confirm they're populating
+    test_orders(myDB)
+
+
+    #prints the retrieved customer record for the specified customer ID
+    test_get_customer_by_id(myDB, 101)
+
     

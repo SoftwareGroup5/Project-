@@ -40,12 +40,6 @@ if __name__ == "__main__":
     print(dbAPI.delete_db(myDB))
     #create database with name from above 
     dbAPI.create(myDB)
-
-    #populate different tables in myDB with data
-    dbAPI.fill_orders(myDB)
-
-    #prints out entries in each table so we can visually confirm they're populating
-    test_orders(myDB)
     
     #fills auth_table
     print(dbAPI.fill_auth(myDB))
@@ -58,9 +52,18 @@ if __name__ == "__main__":
 
     #fill customer_table
     print(dbAPI.fill_customers(myDB))
+    
+    #fill product
+    dbAPI.fill_products(myDB)
 
     #print out entries in customer_table to confirm
     test_customers(myDB)
+    
+    #fill orders table 
+    dbAPI.fill_orders(myDB)
+
+    #prints out entries in each table so we can visually confirm they're populating
+    test_orders(myDB)
 
 
     #prints the retrieved customer record for the specified customer ID
