@@ -27,7 +27,7 @@ def cart():
     #cart_items = dbAPI.get_cart_for_customer(DB_NAME, customer_id)
     
     cart_items= [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
-    return render_template('cart.html', items=cart_items)
+    return render_template('cart.html', cart_items=cart_items)
     
 
 @app.route('/profile_client')
