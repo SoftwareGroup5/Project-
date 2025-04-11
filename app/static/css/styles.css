@@ -503,3 +503,26 @@ header .container {
       padding: 30px 0;
   }
 }
+
+/* Styling for the table */
+table.cart-table {
+  width: 100%;
+  border-collapse: collapse; /* Makes sure the borders are collapsed into a single border */
+  margin-top: 20px;
+}
+
+table.cart-table th,
+table.cart-table td {
+  padding: 12px; /* Adds padding inside cells */
+  text-align: left; /* Aligns text to the left */
+  border: 1px solid #ddd; /* Adds a light border to the table */
+}
+
+table.cart-table th {
+  background-color: #9e8bca; /* Light background for headers */
+  font-weight: bold;
+}
+
+table.cart-table td {
+  text-align: center; /* Centers the text in the data cells */
+}
