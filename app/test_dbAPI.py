@@ -36,6 +36,21 @@ def test_get_customer_by_id(DB, customer_id):
 def test_get_cart_for_customer(DB, customer_id):
     print("Testing cart retrieval for customer:", customer_id)
     print(dbAPI.get_cart_for_customer(DB, customer_id))
+#Product Tests
+def test_get_all_products(DB):
+    print("Testing: Get All Products")
+    products = dbAPI.get_all_products(DB)
+    for product in products:
+        print(product)
+
+def test_get_product_by_id(DB, product_id):
+    print(f"Testing: Get Product by ID ({product_id})")
+    product = dbAPI.get_product_by_id(DB, product_id)
+    if product:
+        print(product)
+    else:
+        print("No product found with that ID.")
+
 
 
 if __name__ == "__main__":
@@ -73,3 +88,30 @@ if __name__ == "__main__":
     test_get_customer_by_id(myDB, 101)
     
     test_get_cart_for_customer(myDB, 345)
+
+    #product test calls
+    #fill product
+    dbAPI.fill_products(myDB)
+
+    # Test retrieving all products
+    test_get_all_products(myDB)
+
+    # Test retrieving a single product by ID
+    test_get_product_by_id(myDB, 1)       # Should exist
+    test_get_product_by_id(myDB, 9999)    # Should NOT exist
+
+    #print out entries in customer_table to confirm
+    test_customers(myDB)
+
+    #fill orders table 
+    dbAPI.fill_orders(myDB)
+
+    #prints out entries in each table so we can visually confirm they're populating
+    test_orders(myDB)
+
+    #prints the retrieved customer record for the specified customer ID
+    test_get_customer_by_id(myDB, 101)
+    
+    test_get_cart_for_customer(myDB, 345)
+
+
