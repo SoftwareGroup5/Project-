@@ -276,6 +276,33 @@ def delete_db(db):
         return f"Database '{db}' does not exist"
     
 
+# Retrieve all products for listing page
+def get_all_products(db):
+    conn = sqlite3.connect(db)
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('''
+        SELECT id_product, prod_name, img_link, prod_price, product_inv 
+        FROM prod_table
+    ''')
+    products = [dict(row) for row in c.fetchall()]
+    conn.close()
+    return products
+
+
+# Retrieve one product by ID
+def get_product_by_id(db, product_id):
+    conn = sqlite3.connect(db)
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('''
+        SELECT prod_name, img_link, prod_price, product_inv 
+        FROM prod_table 
+        WHERE id_product = ?
+    ''', (product_id,))
+    result = c.fetchone()
+    conn.close()
+    return dict(result) if result else None
 
 
 
