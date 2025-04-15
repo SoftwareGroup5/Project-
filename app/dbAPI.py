@@ -35,7 +35,7 @@ def create (db):
                   customer_id INT,
                   products_owned TEXT,
                   PRIMARY KEY (id_login),
-                  FOREIGN KEY (customer_id) REFERENCES order_history(id_order)
+                  FOREIGN KEY (customer_id) REFERENCES customer_table(id_customer) 
             );""")
 
     #create prod_table to store product data
@@ -60,28 +60,6 @@ def create (db):
     conn.commit()
     conn.close()
     
-    return 
-
-
-
-#this can be a fill for all tables or we can do 1 per table and then call them all in the test file, doesn't matter to me -nicole
-#right now its specific for the orders table
-
-def fill_orders (db):
-    conn = sqlite3.connect(db)
-    c = conn.cursor()
-    
-    # added more rows to line up with order_history
-    #add entries to orders, this is tested in test_dbAPI which just makes sure it populates values 
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (1, 1, 1)")
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (1, 2, 2)")
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 3, 3)")
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 4, 3)")
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 5, 3)")
-    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 6, 3)")
-    
-    conn.commit()
-    conn.close()
     return 
 
 # Modified fill value to match customer_table ids
@@ -177,7 +155,6 @@ def fill_customers(db):
     conn.close()
     return "DB customer_table filled with sample data"
 
-#functions
 def fill_orders(db):
     conn = sqlite3.connect(db)
     c = conn.cursor()
@@ -192,7 +169,6 @@ def fill_orders(db):
     conn.commit()
     conn.close()
     return 
-
 
 def insert_order(db, order_id, product_id, quantity):
     conn = sqlite3.connect(db)
@@ -216,7 +192,7 @@ def get_cart_for_customer(DB, customer_id):
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
 
-    # Get the current pending order ID for this customer
+    #get the current pending order ID for this customer
     c.execute("""
         SELECT id_order FROM order_history_table
         WHERE customer_id = ? AND shipping_status = 'Pending'
@@ -229,7 +205,7 @@ def get_cart_for_customer(DB, customer_id):
 
     order_id = result['id_order']
 
-    # Get cart items from orders + product name
+    #get cart items from orders + product name
     c.execute("""
         SELECT p.prod_name AS name,
                o.quantity,
@@ -244,7 +220,46 @@ def get_cart_for_customer(DB, customer_id):
     conn.close()
     return cart_items
 
+def make_order(db, customer_id):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    
+    #find the pending order for this customer
+    c.execute("""
+        SELECT id_order FROM order_history_table
+        WHERE customer_id = ? AND shipping_status = 'Pending'
+    """, (customer_id,))
+    result = c.fetchone()
+    
+    order_id = result[0]
 
+    # get items in the order (with product_id and quantity) 
+    c.execute("""
+        SELECT product_id, quantity
+        FROM orders
+        WHERE order_id = ?
+    """, (order_id,))
+    items = c.fetchall()
+
+    #adjust inventory for each product in the order 
+    for product_id, quantity in items:
+        c.execute("""
+            UPDATE prod_table
+            SET product_inv = product_inv - ?
+            WHERE id_product = ?
+        """, (quantity, product_id))
+    
+    #update the order's status to Received
+    c.execute("""
+        UPDATE order_history_table
+        SET shipping_status = 'Received', order_status = 'Closed'
+        WHERE id_order = ?
+    """, (order_id,))
+    
+    conn.commit()
+    conn.close()
+    
+    return f"Order {order_id} for customer {customer_id} has been marked as Received."
 
 
 def get_customer_by_id(db, customer_id):

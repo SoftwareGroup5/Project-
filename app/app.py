@@ -1,6 +1,7 @@
 #author stephen tynan
 #purpose: host static html
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+
 import dbAPI
 
 app = Flask(__name__, static_folder='static')
@@ -16,16 +17,22 @@ def products():
 
 @app.route('/login')
 def login():
-    #need to set a session variable customer_id so we can add to + display cart on other pages 
+    #once logged in, we need to set a session variable customer_id so we can add to + display cart on other pages 
         
     return 'login'
 
-@app.route('/cart')
+@app.route('/cart', methods=['GET', 'POST'])
 def cart():
-    
+
+    if request.method == 'POST':
+        #dbAPI.make_order()
+        dbAPI.make_order('countertops_demo.db', 103)  #make the order 
+        return redirect(url_for('cart'))  #refresh the page after making the order
+
     #customer_id = session.get('customer_id')
-    #cart_items = dbAPI.get_cart_for_customer(DB_NAME, customer_id)
+    #cart_items = dbAPI.get_cart_for_customer('countertops_demo.db', customer_id)
     
+    #two variables to pass into the template: cart_items and cart_total
     cart_items= [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
     cart_total = sum(item['total_price'] for item in cart_items)
 
@@ -52,7 +59,6 @@ def portal():
         inventory=inventory_data,
         shipping=shipping_data
     )
-
 
 
 # Checks on the db
