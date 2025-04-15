@@ -71,22 +71,27 @@ def fill_orders (db):
     conn = sqlite3.connect(db)
     c = conn.cursor()
     
+    # added more rows to line up with order_history
     #add entries to orders, this is tested in test_dbAPI which just makes sure it populates values 
     c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (1, 1, 1)")
     c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (1, 2, 2)")
     c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 3, 3)")
+    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 4, 3)")
+    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 5, 3)")
+    c.execute("INSERT INTO orders (order_id,product_id,quantity) VALUES (2, 6, 3)")
     
     conn.commit()
     conn.close()
     return 
 
+# Modified fill value to match customer_table ids
 def fill_auth(db):
     conn = sqlite3.connect(db)
     c = conn.cursor()
     test_value_auth = [
-        ('admin', 'root', 'client', False, 0, 'all'), 
-        ('test_cust', 'test', 'cust', False, 1, 'none'), 
-        ('test_client', 'test', 'client', False, 2, 'test')
+        ('admin', 'root', 'client', False, 101, 'all'), 
+        ('test_cust', 'test', 'cust', False, 102, 'none'), 
+        ('test_client', 'test', 'client', False, 103, 'test')
         ]
     c.executemany(''' INSERT INTO auth_table
                       ( id_login, pass_login, auth_level, auth, customer_id, products_owned )
@@ -141,12 +146,12 @@ def fill_order_history(db):
     conn = sqlite3.connect(db)
     c = conn.cursor()
     test_order_history = [
-        ('1', '123', 'Open', '2025/01/02', 'Shipped'),
-        ('2', '234', 'Closed', '2024/01/02', 'Received'),
-        ('3', '345', 'Processing', '2025/03/28', 'Pending'),
-        ('4', '456', 'Open', '2025/01/02', 'Staged'),
-        ('5', '567', 'Closed', '2024/06/02', 'Received'),
-        ('6', '678', 'Closed', '2024/08/02', 'Received')
+        ('1', '101', 'Open', '2025/01/02', 'Shipped'),
+        ('2', '102', 'Closed', '2024/01/02', 'Received'),
+        ('3', '103', 'Processing', '2025/03/28', 'Pending'),
+        ('4', '101', 'Open', '2025/01/02', 'Staged'),
+        ('5', '102', 'Closed', '2024/06/02', 'Received'),
+        ('6', '103', 'Closed', '2024/08/02', 'Received')
         ]
     c.executemany(''' INSERT INTO order_history_table
                       ( id_order, customer_id, order_status, date, shipping_status )
@@ -305,7 +310,58 @@ def get_product_by_id(db, product_id):
     return dict(result) if result else None
 
 
-
+# inventory chart in customer portal
+def get_store_inventory(db):
+    conn = sqlite3.connect(db)
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
     
+    c.execute('''
+        SELECT 
+            p.id_product,
+            p.prod_name,
+            p.img_link,
+            p.product_inv,
+            COALESCE(SUM(o.quantity), 0) AS open_orders
+        FROM prod_table AS p
+        LEFT JOIN orders AS o ON p.id_product = o.product_id
+        LEFT JOIN order_history_table AS oh 
+            ON o.order_id = oh.id_order AND oh.order_status = 'Open'
+        GROUP BY p.id_product, p.prod_name, p.img_link, p.product_inv;
+        ''')
+    products = [dict(row) for row in c.fetchall()]
+    
+    # calculating the stock
+    
+    c.execute("SELECT SUM(product_inv) AS total_stock FROM prod_table")
+    row = c.fetchone()
+    total_stock = row["total_stock"] if row and row["total_stock"] is not None else 0
+    
+    conn.close()
+    
+    return {"products": products, "total_stock": total_stock}
+
+
+def get_shipping_status(db):
+    conn = sqlite3.connect(db)
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+    c.execute('''
+        SELECT oh.date AS ship_date,
+            COALESCE(GROUP_CONCAT(p.prod_name, ', '), '') AS products,
+            (c.first_name || ' ' || c.last_name) AS customer_name,
+            c.address,
+            oh.shipping_status
+        FROM order_history_table oh
+        JOIN customer_table c ON oh.customer_id = c.id_customer
+        LEFT JOIN orders o ON oh.id_order = o.order_id
+        LEFT JOIN prod_table p ON o.product_id = p.id_product
+        GROUP BY oh.id_order, oh.date, customer_name, c.address, oh.shipping_status
+        ORDER BY oh.date;
+        ''')
+    rows = [dict(row) for row in c.fetchall()]
+    conn.close()
+    
+    return {"data": rows}
     
 
