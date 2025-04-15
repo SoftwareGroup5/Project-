@@ -195,7 +195,7 @@ def get_cart_for_customer(DB, customer_id):
     #get the current pending order ID for this customer
     c.execute("""
         SELECT id_order FROM order_history_table
-        WHERE customer_id = ? AND shipping_status = 'Pending'
+        WHERE customer_id = ? AND order_status = 'Processing'
     """, (customer_id,))
     result = c.fetchone()
 
@@ -227,7 +227,7 @@ def make_order(db, customer_id):
     #find the pending order for this customer
     c.execute("""
         SELECT id_order FROM order_history_table
-        WHERE customer_id = ? AND shipping_status = 'Pending'
+        WHERE customer_id = ? AND order_status = 'Processing'
     """, (customer_id,))
     result = c.fetchone()
     
@@ -250,9 +250,10 @@ def make_order(db, customer_id):
         """, (quantity, product_id))
     
     #update the order's status to Received
+    #also update shipping status?
     c.execute("""
         UPDATE order_history_table
-        SET shipping_status = 'Received', order_status = 'Closed'
+        SET order_status = 'Open' 
         WHERE id_order = ?
     """, (order_id,))
     
@@ -269,7 +270,6 @@ def get_customer_by_id(db, customer_id):
     customer = c.fetchone()
     conn.close()
     return customer
-
 
 
 #functions for login
