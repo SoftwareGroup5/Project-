@@ -37,3 +37,9 @@ Last week (excluding spring break), we worked on Milestone 5 by adding our respe
 
 Last week, we set up at the app folder and started to develop our sqlite database. Most group members started to add SQL code to create their tables and functions to fill in those tables with some starter data. The task for this week is to finish up creating tables, populating tables with starter data, and writing functions. We are all assigned a specific page that we can focus on writing the functions for, and the coordinating unit tests. If anyone has extra time this week, we will also start setting up the flask framework and working on our individual pages. Everyone attended the meeting.
 
+**Week 13: 4/14/2025**
+
+<img src= "trello_screenshots/Screenshot 2025-04-14 190344.png" width ="500">
+
+Last week, we all completed writing SQL code to create our tables. We also started writing and testing functions. Those with time started the flask routes, got the website set up on Render, and started writing HTML and css. Currently we have the homepage and cart somewhat up and running. This week we plan to have a check in meeting on Wednesday with progress on all pages - we can troubleshoot and discuss from there. We also signed up for our presentation time slot and plan to practice the presentation at next Monday's meeting. Everyone attended the meeting and participated. 
+
