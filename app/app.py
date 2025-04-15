@@ -72,14 +72,14 @@ def fill_test_data():
     delete_status = dbAPI.delete_db(db_path)
     dbAPI.create(db_path)
     
-    autho = dbAPI.fill_auth(myDB)
+    autho = dbAPI.fill_auth(db_path)
     customer_status = dbAPI.fill_customers(db_path)
+    products_list = dbAPI.fill_products(db_path)
+    order_history = dbAPI.fill_order_history(db_path)
     orders_status = dbAPI.fill_orders(db_path)
-    products_list = dbAPI.fill_products(myDB)
-    order_history = dbAPI.fill_order_history(myDB)
-    
-    
-    return f"{autho}<br>{customer_status}<br>{orders_status}<br>{products_list}<br>{order_history}"
+
+
+    return f"{autho}<br>{customer_status}<br>{products_list}<br>{order_history}<br>{orders_status}"
 
 if __name__ == '__main__':
     app.run(debug=True)

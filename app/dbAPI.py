@@ -107,33 +107,33 @@ def fill_products(db):
     test_value_prod = [
         #(id_product ,product name,image link, product price, product inventory, product inv) 
         # Nature
-        (1, 'Treering Counter', 'Project-/Images/Nature/treering.png', 14.99, 10),
-        (2, 'Leaf Branches Decor', 'Project-/Images/Nature/leaf branches.webp', 11.25, 8),
-        (3, 'Jungle-Themed Kitchen', 'Project-/Images/Nature/jungle-themed-kitchen.png', 25.50, 5),
-        (4, 'Sinkhole Basin', 'Project-/Images/Nature/sinkhole.png', 30.00, 4),
-        (5, 'Water Moss Texture', 'Project-/Images/Nature/water moss.webp', 13.45, 6),
-        (6, 'Snowy Counter', 'Project-/Images/Nature/snowycounter.png', 18.75, 9),
-        (7, 'Mountain Design', 'Project-/Images/Nature/mountains.png', 22.00, 3),
+        (1, 'Treering Counter', 'images/Nature/treering.png', 14.99, 10),
+        (2, 'Leaf Branches Decor', 'images/Nature/leaf_branches.webp', 11.25, 8),
+        (3, 'Jungle-Themed Kitchen', 'images/Nature/jungle-themed-kitchen.png', 25.50, 5),
+        (4, 'Sinkhole Basin', 'images/Nature/sinkhole.png', 30.00, 4),
+        (5, 'Water Moss Texture', 'images/Nature/water_moss.webp', 13.45, 6),
+        (6, 'Snowy Counter', 'images/Nature/snowycounter.png', 18.75, 9),
+        (7, 'Mountain Design', 'images/Nature/mountains.png', 22.00, 3),
 
         # Animal
-        (8, 'Leopard Print Plate', 'Project-/Images/Animal/leopard.png', 19.95, 7),
-        (9, 'Elephant-Themed Kitchen', 'Project-/Images/Animal/elephant-themed-kitchen.png', 29.99, 5),
-        (10, 'Panda Print Tray', 'Project-/Images/Animal/panda.png', 16.25, 6),
-        (11, 'Puppy Mug', 'Project-/Images/Animal/puppy.png', 12.99, 10),
+        (8, 'Leopard Print Plate', 'images/Animal/leopard.png', 19.95, 7),
+        (9, 'Elephant-Themed Kitchen', 'images/Animal/elephant-themed-kitchen.png', 29.99, 5),
+        (10, 'Panda Print Tray', 'images/Animal/panda.png', 16.25, 6),
+        (11, 'Puppy Mug', 'images/Animal/puppy.png', 12.99, 10),
 
         # JunkFood
-        (12, 'Chicken Wings Dish', 'Project-/Images/JunkFood/chicken_wings.png', 9.50, 12),
-        (13, 'Potato Chip Plate', 'Project-/Images/JunkFood/potatoe_chip.png', 7.25, 15),
-        (14, 'French Fries Bowl', 'Project-/Images/JunkFood/french_fries.png', 8.99, 14),
-        (15, 'Cheese Sticks Tray', 'Project-/Images/JunkFood/cheese_sticks.png', 10.50, 9),
+        (12, 'Chicken Wings Dish', 'images/JunkFood/chicken_wings.png', 9.50, 12),
+        (13, 'Potato Chip Plate', 'images/JunkFood/potatoe_chip.png', 7.25, 15),
+        (14, 'French Fries Bowl', 'images/JunkFood/french_fries.png', 8.99, 14),
+        (15, 'Cheese Sticks Tray', 'images/JunkFood/cheese_sticks.png', 10.50, 9),
 
         # Industrial
-        (16, 'Concrete Texture', 'Project-/Images/Industrial/concrete.webp', 13.00, 8),
-        (17, 'CS Countertop', 'Project-/Images/Industrial/ComputerScienceCounter.png', 27.75, 4),
-        (18, 'Brewhouse Surface', 'Project-/Images/Industrial/brewhouse.png', 24.00, 6),
-        (19, 'Brick Design Panel', 'Project-/Images/Industrial/brick.png', 20.50, 5),
-        (20, 'Steel Factory Look', 'Project-/Images/Industrial/stainless-steel-factory.png', 31.25, 3),
-        (21, 'Bikeshop Bar', 'Project-/Images/Industrial/bikeshop.png', 23.99, 7)
+        (16, 'Concrete Texture', 'images/Industrial/concrete.webp', 13.00, 8),
+        (17, 'CS Countertop', 'images/Industrial/ComputerScienceCounter.png', 27.75, 4),
+        (18, 'Brewhouse Surface', 'images/Industrial/brewhouse.png', 24.00, 6),
+        (19, 'Brick Design Panel', 'images/Industrial/brick.png', 20.50, 5),
+        (20, 'Steel Factory Look', 'images/Industrial/stainless-steel-factory.png', 31.25, 3),
+        (21, 'Bikeshop Bar', 'images/Industrial/bikeshop.png', 23.99, 7)
     ]
     c.executemany(''' INSERT INTO prod_table
                       ( id_product, prod_name, img_link, prod_price, product_inv )
