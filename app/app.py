@@ -40,6 +40,46 @@ def profile_client():
 def profile_cust():
     return 'customer profile'
 
+@app.route('/portal')
+def portal():
+    db_path = 'countertops_demo.db'
+    
+    inventory_data = dbAPI.get_store_inventory(db_path)
+    shipping_data = dbAPI.get_shipping_status(db_path)
+    
+    return render_template(
+        'portal.html',
+        inventory=inventory_data,
+        shipping=shipping_data
+    )
+
+
+
+# Checks on the db
+def delete_db(db):
+    if os.path.exists(db):
+        os.remove(db)
+        return f"Database '{db}' deleted"
+    else:
+        return f"Database '{db}' does not exist"
+
+
+# Creates the dev database for this demo ### must run this before demo ###
+@app.route('/fill_test_data')
+def fill_test_data():
+    db_path = 'countertops_demo.db'
+    
+    delete_status = dbAPI.delete_db(db_path)
+    dbAPI.create(db_path)
+    
+    autho = dbAPI.fill_auth(db_path)
+    customer_status = dbAPI.fill_customers(db_path)
+    products_list = dbAPI.fill_products(db_path)
+    order_history = dbAPI.fill_order_history(db_path)
+    orders_status = dbAPI.fill_orders(db_path)
+
+
+    return f"{autho}<br>{customer_status}<br>{products_list}<br>{order_history}<br>{orders_status}"
 
 if __name__ == '__main__':
     app.run(debug=True)
