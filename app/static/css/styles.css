@@ -526,3 +526,35 @@ table.cart-table th {
 table.cart-table td {
   text-align: center; /* Centers the text in the data cells */
 }
+/* ADDED FOR PRODUCTS PAGE */
+/* added image styling for products page -cole*/
+.product-card img {
+  width: 100%;
+  max-width: 950px;    /* Controls uniform width */
+  height: 550px;        /* Fixed height for all images */
+  object-fit: contain;    /* switch to cover if we dont like the square*/
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* border between product cards -cole*/
+.product-card {
+  border-bottom: 1px solid #ccc;  /* thin divider between products */
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+/*thick border between product cats -cole*/
+.product-category {
+  border-bottom: 3px solid #999;  /* thick category divider */
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+}
+/*product header size increase -cole*/
+.product-category h3 {
+  font-size: 2rem;         /* You can adjust this size */
+  margin-bottom: 20px;     /* Adds space under the header */
+  font-weight: bold;
+  color: #333;             /* Optional: make it stand out */
+}
+

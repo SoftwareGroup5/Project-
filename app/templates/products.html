@@ -1,0 +1,130 @@
+<!-- Author: Cole Akers -->
+<!-- 4/16/2025 -->
+<!-- HTML for products page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products | Premium CounterTop Solutions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>Premium CounterTop Solutions</h1>
+      </div>
+      <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('products') }}">Products</a>
+        <a href="{{ url_for('portal') }}">Portal</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('cart') }}">Cart</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Our Products</h2>
+
+      <!-- Animal Category -->
+      <section class="product-category">
+        <h3>Animal</h3>
+        <div class="product-grid">
+          <div class="product-card">
+            <h4>Elephant Kitchen</h4>
+            <p class="price">$1,499.99</p>
+            <img src="{{ url_for('static', filename='images/Animal/elephant-themed-kitchen.png') }}" alt="Elephant Kitchen">
+            <button class="btn">Add to Cart (Coming Soon)</button>         
+          </div>
+          <div class="product-card">
+            <h4>Leopard</h4>
+            <p class="price">$1,299.99</p>
+            <img src="{{ url_for('static', filename='images/Animal/leopard.png') }}" alt="Leopard">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+          <div class="product-card">
+            <h4>Panda</h4>
+            <p class="price">$1,599.99</p>
+            <img src="{{ url_for('static', filename='images/Animal/panda.png') }}" alt="Panda">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+          <div class="product-card">
+            <h4>Puppy</h4>
+            <p class="price">$1,399.99</p>
+            <img src="{{ url_for('static', filename='images/Animal/puppy.png') }}" alt="Puppy">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industrial Category -->
+      <section class="product-category">
+        <h3>Industrial</h3>
+        <div class="product-grid">
+          {% for name, price in [
+            ('ComputerScienceCounter.png', '$2,499.99'),
+            ('bikeshop.png', '$1,899.99'),
+            ('brewhouse.png', '$2,199.99'),
+            ('brick.png', '$1,799.99'),
+            ('concrete.webp', '$1,599.99'),
+            ('stainless-steel-factory.png', '$2,699.99')
+          ] %}
+          <div class="product-card">
+            <h4>{{ name.rsplit('.', 1)[0].replace('-', ' ').replace('_', ' ').title() }}</h4>
+            <p class="price">{{ price }}</p>
+            <img src="{{ url_for('static', filename='images/Industrial/' ~ name) }}" alt="{{ name }}">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- Junk Food Category -->
+      <section class="product-category">
+        <h3>Junk Food</h3>
+        <div class="product-grid">
+          {% for name, price in [
+            ('cheese_sticks.png', '$899.99'),
+            ('chicken_wings.png', '$999.99'),
+            ('french_fries.png', '$799.99'),
+            ('potatoe_chip.png', '$849.99')
+          ] %}
+          <div class="product-card">
+            <h4>{{ name.rsplit('.', 1)[0].replace('_', ' ').title() }}</h4>
+            <p class="price">{{ price }}</p>
+            <img src="{{ url_for('static', filename='images/JunkFood/' ~ name) }}" alt="{{ name }}">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- Nature Category -->
+      <section class="product-category">
+        <h3>Nature</h3>
+        <div class="product-grid">
+          {% for name, price in [
+            ('jungle-themed-kitchen.png', '$1,499.99'),
+            ('leaf_branches.webp', '$1,199.99'),
+            ('mountains.png', '$1,399.99'),
+            ('sinkhole.png', '$1,549.99'),
+            ('snowycounter.png', '$1,799.99'),
+            ('treering.png', '$1,349.99'),
+            ('water_moss.webp', '$1,259.99')
+          ] %}
+          <div class="product-card">
+            <h4>{{ name.rsplit('.', 1)[0].replace('-', ' ').replace('_', ' ').title() }}</h4>
+            <p class="price">{{ price }}</p>
+            <img src="{{ url_for('static', filename='images/Nature/' ~ name) }}" alt="{{ name }}">
+            <button class="btn">Add to Cart (Coming Soon)</button>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
