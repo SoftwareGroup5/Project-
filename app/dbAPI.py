@@ -280,12 +280,22 @@ def authorize(db, user, user_pass):
                 FROM auth_table
                 WHERE id_login = ? AND pass_login = ?''', (user, user_pass))
     res = c.fetchall()
+    
+    # Check if any results were found
+    if not res:
+        conn.close()
+        raise Exception("Invalid username or password")
+    
     id_login, pass_login, auth_level, auth, customer_id, products_owned = res[0]
+    
+    # Update auth status to TRUE
     c.execute('''UPDATE auth_table
                  SET auth = TRUE
                  WHERE id_login = ? AND pass_login = ?''', (user, user_pass))
-    auth = True
-    return id_login, auth_level, auth, customer_id, products_owned
+    conn.commit()
+    conn.close()
+    
+    return id_login, auth_level, True, customer_id, products_owned
 
 #function for deletion
 def delete_db(db):

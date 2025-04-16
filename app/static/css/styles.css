@@ -558,3 +558,57 @@ table.cart-table td {
   color: #333;             /* Optional: make it stand out */
 }
 
+/*Login CSS */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #0c0018;
+  border: 1px solid var(--main-purple);
+  box-shadow: 0 0 15px var(--main-purple);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: var(--text-light);
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid var(--main-purple);
+  background-color: rgba(10, 10, 18, 0.8);
+  color: var(--text-light);
+}
+
+.login-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, var(--main-purple), var(--accent-color));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  box-shadow: 0 0 15px var(--main-purple);
+}
+
+.error-message {
+  color: #ff3366;
+  margin-top: 15px;
+  text-align: center;
+}

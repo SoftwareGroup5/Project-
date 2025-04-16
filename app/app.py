@@ -1,8 +1,9 @@
 #author stephen tynan
 #purpose: host static html
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 import dbAPI
+import os, sqlite3
 
 app = Flask(__name__, static_folder='static')
 
@@ -15,11 +16,93 @@ def home():
 def products():
     return render_template('products.html')
 
-@app.route('/login')
+def print_auth_table():
+    conn = sqlite3.connect('countertops_demo.db')
+    conn.row_factory = sqlite3.Row  # This allows accessing columns by name
+    c = conn.cursor()
+    
+    # Query the auth_table
+    c.execute('SELECT * FROM auth_table')
+    rows = c.fetchall()
+    
+    # Format the results as HTML
+    result = '<h2>Auth Table Contents</h2>'
+    result += '<table border="1"><tr><th>ID</th><th>Password</th><th>Auth Level</th><th>Auth Status</th><th>Customer ID</th><th>Products Owned</th></tr>'
+    
+    for row in rows:
+        result += f'<tr>'
+        result += f'<td>{row["id_login"]}</td>'
+        result += f'<td>{row["pass_login"]}</td>'
+        result += f'<td>{row["auth_level"]}</td>'
+        result += f'<td>{row["auth"]}</td>'
+        result += f'<td>{row["customer_id"]}</td>'
+        result += f'<td>{row["products_owned"]}</td>'
+        result += f'</tr>'
+    
+    result += '</table>'
+    conn.close()
+    print(result)
+    
+    return result
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    #once logged in, we need to set a session variable customer_id so we can add to + display cart on other pages 
+    error = None
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
         
-    return 'login'
+        print(f"Login attempt: username={username}, password={password}")
+        
+        # Check if the database file exists
+        if not os.path.exists('countertops_demo.db'):
+            error = "Database not found. Please set up the demo data first."
+            print(f"Database error: {error}")
+            return render_template('login.html', error=error)
+        
+        try:
+            # Print auth table for debugging
+            print("Auth table content before login attempt:")
+            conn = sqlite3.connect('countertops_demo.db')
+            c = conn.cursor()
+            c.execute('SELECT * FROM auth_table')
+            rows = c.fetchall()
+            for row in rows:
+                print(row)
+            conn.close()
+            
+            # Call the authorize function to verify credentials
+            id_login, auth_level, auth, customer_id, products_owned = dbAPI.authorize('countertops_demo.db', username, password)
+            
+            print(f"Login successful: id={id_login}, level={auth_level}, auth={auth}, customer_id={customer_id}")
+            
+            # Store user information in session
+            session['logged_in'] = True
+            session['username'] = id_login
+            session['auth_level'] = auth_level
+            session['customer_id'] = customer_id
+            session['products_owned'] = products_owned
+            
+            # Redirect based on auth level
+            if auth_level == 'client':
+                return redirect(url_for('profile_client'))
+            else:
+                return redirect(url_for('profile_cust'))
+                
+        except Exception as e:
+            # If login fails, show error message
+            print(f"Login error: {str(e)}")
+            error = f"Login failed: {str(e)}"
+    
+    # GET request or login failed
+    return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    # Clear the session
+    session.clear()
+    return redirect(url_for('home'))
 
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
@@ -86,6 +169,35 @@ def fill_test_data():
 
 
     return f"{autho}<br>{customer_status}<br>{products_list}<br>{order_history}<br>{orders_status}"
+
+@app.route('/debug/auth_table')
+def debug_auth_table():
+    conn = sqlite3.connect('countertops_demo.db')
+    conn.row_factory = sqlite3.Row  # This allows accessing columns by name
+    c = conn.cursor()
+    
+    # Query the auth_table
+    c.execute('SELECT * FROM auth_table')
+    rows = c.fetchall()
+    
+    # Format the results as HTML
+    result = '<h2>Auth Table Contents</h2>'
+    result += '<table border="1"><tr><th>ID</th><th>Password</th><th>Auth Level</th><th>Auth Status</th><th>Customer ID</th><th>Products Owned</th></tr>'
+    
+    for row in rows:
+        result += f'<tr>'
+        result += f'<td>{row["id_login"]}</td>'
+        result += f'<td>{row["pass_login"]}</td>'
+        result += f'<td>{row["auth_level"]}</td>'
+        result += f'<td>{row["auth"]}</td>'
+        result += f'<td>{row["customer_id"]}</td>'
+        result += f'<td>{row["products_owned"]}</td>'
+        result += f'</tr>'
+    
+    result += '</table>'
+    conn.close()
+    
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)
