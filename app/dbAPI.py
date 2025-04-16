@@ -230,6 +230,11 @@ def make_order(db, customer_id):
         WHERE customer_id = ? AND order_status = 'Processing'
     """, (customer_id,))
     result = c.fetchone()
+
+    if not result:
+        conn.close()
+        return ("Cannot make order")
+
     
     order_id = result[0]
 
@@ -240,6 +245,10 @@ def make_order(db, customer_id):
         WHERE order_id = ?
     """, (order_id,))
     items = c.fetchall()
+
+    if not items:
+        conn.close()
+        return []
 
     #adjust inventory for each product in the order 
     for product_id, quantity in items:
