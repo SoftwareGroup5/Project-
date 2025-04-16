@@ -6,7 +6,7 @@ import dbAPI
 import os, sqlite3
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'development_secret_key_12345'
+app.secret_key = 'notsosecretkey'
 
 @app.context_processor
 def inject_user():
