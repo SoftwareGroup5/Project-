@@ -1,0 +1,81 @@
+<!-- Author: Stephen Tynan -->
+<!-- Customer profile template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile - Premium CounterTop Solutions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Premium CounterTop Solutions</h1>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('products') }}">Products</a>
+                {% if logged_in %}
+                    {% if auth_level == 'client' %}
+                        <a href="{{ url_for('profile_client') }}">Profile</a>
+                    {% else %}
+                        <a href="{{ url_for('profile_cust') }}">Profile</a>
+                    {% endif %}
+                    <a href="{{ url_for('cart') }}">Cart</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h2>Customer Profile</h2>
+                <p>Welcome back, {{ profile.username }}!</p>
+            </div>
+            
+            <div class="profile-info">
+                <div class="label">Username:</div>
+                <div class="value">{{ profile.username }}</div>
+                
+                <div class="label">Account Type:</div>
+                <div class="value">Customer</div>
+                
+                <div class="label">Customer ID:</div>
+                <div class="value">{{ profile.customer_id }}</div>
+            </div>
+            
+            <div class="personal-details">
+                <h3>Personal Information</h3>
+                <div class="profile-info">
+                    <div class="label">First Name:</div>
+                    <div class="value">{{ customer[1] }}</div>
+                    
+                    <div class="label">Last Name:</div>
+                    <div class="value">{{ customer[2] }}</div>
+                    
+                    <div class="label">Address:</div>
+                    <div class="value">{{ customer[3] }}</div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="{{ url_for('cart') }}" class="action-btn">View Cart</a>
+                <a href="{{ url_for('products') }}" class="action-btn">Shop Now</a>
+                <a href="{{ url_for('logout') }}" class="action-btn">Logout</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <p>&copy; 2025 Online Store. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

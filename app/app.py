@@ -106,7 +106,22 @@ def cart():
 
 @app.route('/profile_cust')
 def profile_cust():
-    return 'customer profile'
+    # Check if user is logged in and is a customer
+    if not session.get('logged_in') or session.get('auth_level') != 'cust':
+        return redirect(url_for('login'))
+    
+    # Get the user profile data
+    profile = {
+        'username': session.get('username'),
+        'auth_level': session.get('auth_level'),
+        'customer_id': session.get('customer_id'),
+        'products_owned': session.get('products_owned')
+    }
+    
+    # Get additional customer details from the database
+    customer_details = dbAPI.get_customer_by_id('countertops_demo.db', session.get('customer_id'))
+    
+    return render_template('profile_cust.html', profile=profile, customer=customer_details)
 
 @app.route('/profile_client')
 def profile_client():

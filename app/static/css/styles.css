@@ -612,3 +612,58 @@ table.cart-table td {
   margin-top: 15px;
   text-align: center;
 }
+
+/* css for customer profile */
+.profile-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #0c0018;
+  border: 1px solid var(--main-purple);
+  box-shadow: 0 0 15px var(--main-purple);
+}
+
+.profile-header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 15px;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.profile-info .label {
+  font-weight: bold;
+  color: var(--light-purple);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.action-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(45deg, var(--main-purple), var(--accent-color));
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  box-shadow: 0 0 15px var(--main-purple);
+}
+
+.personal-details {
+  margin-top: 30px;
+  border-top: 1px solid var(--main-purple);
+  padding-top: 20px;
+}
