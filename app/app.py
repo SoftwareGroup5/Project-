@@ -94,11 +94,13 @@ def cart():
         dbAPI.make_order('countertops_demo.db', 103)  #make the order 
         return redirect(url_for('cart'))  #refresh the page after making the order
 
-    #customer_id = session.get('customer_id')
-    #cart_items = dbAPI.get_cart_for_customer('countertops_demo.db', customer_id)
+    #dyanmic cart pull
+    customer_id = session.get('customer_id')
+    cart_items = dbAPI.get_cart_for_customer('countertops_demo.db', customer_id)
     
-    #two variables to pass into the template: cart_items and cart_total
-    cart_items= [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
+    #to run static
+    #cart_items= [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
+    
     cart_total = sum(item['total_price'] for item in cart_items)
 
     return render_template('cart.html', cart_items=cart_items, cart_total=cart_total)
