@@ -20,40 +20,12 @@ def inject_user():
 @app.route('/')
 @app.route('/home')
 def home():
+    fill_test_data()
     return render_template('index.html')
 
 @app.route('/products')
 def products():
     return render_template('products.html')
-
-def print_auth_table():
-    conn = sqlite3.connect('countertops_demo.db')
-    conn.row_factory = sqlite3.Row  # This allows accessing columns by name
-    c = conn.cursor()
-    
-    # Query the auth_table
-    c.execute('SELECT * FROM auth_table')
-    rows = c.fetchall()
-    
-    # Format the results as HTML
-    result = '<h2>Auth Table Contents</h2>'
-    result += '<table border="1"><tr><th>ID</th><th>Password</th><th>Auth Level</th><th>Auth Status</th><th>Customer ID</th><th>Products Owned</th></tr>'
-    
-    for row in rows:
-        result += f'<tr>'
-        result += f'<td>{row["id_login"]}</td>'
-        result += f'<td>{row["pass_login"]}</td>'
-        result += f'<td>{row["auth_level"]}</td>'
-        result += f'<td>{row["auth"]}</td>'
-        result += f'<td>{row["customer_id"]}</td>'
-        result += f'<td>{row["products_owned"]}</td>'
-        result += f'</tr>'
-    
-    result += '</table>'
-    conn.close()
-    print(result)
-    
-    return result
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -159,8 +131,8 @@ def delete_db(db):
         return f"Database '{db}' does not exist"
 
 
-# Creates the dev database for this demo ### must run this before demo ###
-@app.route('/fill_test_data')
+# Runs automatically when homepage is called. can cause potential errors with db level auth resetting. session should remain.
+
 def fill_test_data():
     db_path = 'countertops_demo.db'
     
@@ -175,35 +147,6 @@ def fill_test_data():
 
 
     return f"{autho}<br>{customer_status}<br>{products_list}<br>{order_history}<br>{orders_status}"
-
-@app.route('/debug/auth_table')
-def debug_auth_table():
-    conn = sqlite3.connect('countertops_demo.db')
-    conn.row_factory = sqlite3.Row  # This allows accessing columns by name
-    c = conn.cursor()
-    
-    # Query the auth_table
-    c.execute('SELECT * FROM auth_table')
-    rows = c.fetchall()
-    
-    # Format the results as HTML
-    result = '<h2>Auth Table Contents</h2>'
-    result += '<table border="1"><tr><th>ID</th><th>Password</th><th>Auth Level</th><th>Auth Status</th><th>Customer ID</th><th>Products Owned</th></tr>'
-    
-    for row in rows:
-        result += f'<tr>'
-        result += f'<td>{row["id_login"]}</td>'
-        result += f'<td>{row["pass_login"]}</td>'
-        result += f'<td>{row["auth_level"]}</td>'
-        result += f'<td>{row["auth"]}</td>'
-        result += f'<td>{row["customer_id"]}</td>'
-        result += f'<td>{row["products_owned"]}</td>'
-        result += f'</tr>'
-    
-    result += '</table>'
-    conn.close()
-    
-    return result
 
 if __name__ == '__main__':
     app.run(debug=True)
