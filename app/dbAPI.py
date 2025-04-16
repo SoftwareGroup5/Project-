@@ -126,7 +126,7 @@ def fill_order_history(db):
     test_order_history = [
         ('1', '101', 'Open', '2025/01/02', 'Shipped'),
         ('2', '102', 'Closed', '2024/01/02', 'Received'),
-        ('3', '103', 'Processing', '2025/03/28', 'Pending'),
+        ('3', '102', 'Processing', '2025/03/28', 'Pending'),
         ('4', '101', 'Open', '2025/01/02', 'Staged'),
         ('5', '102', 'Closed', '2024/06/02', 'Received'),
         ('6', '103', 'Closed', '2024/08/02', 'Received')
