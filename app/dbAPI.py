@@ -18,7 +18,7 @@ def create (db):
               FOREIGN KEY (order_id) REFERENCES order_history_table(id_order)
              );""")
     
-        #customer_table
+    #customer_table
     c.execute("""CREATE TABLE IF NOT EXISTS customer_table (
                   id_customer INT PRIMARY KEY,
                   first_name TEXT,
@@ -351,7 +351,7 @@ def get_store_inventory(db):
         FROM prod_table AS p
         LEFT JOIN orders AS o ON p.id_product = o.product_id
         LEFT JOIN order_history_table AS oh 
-            ON o.order_id = oh.id_order AND oh.order_status = 'Open'
+            ON o.order_id = oh.id_order AND oh.order_status = 'Processing'
         GROUP BY p.id_product, p.prod_name, p.img_link, p.product_inv;
         ''')
     products = [dict(row) for row in c.fetchall()]
