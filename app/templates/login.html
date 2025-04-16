@@ -16,10 +16,18 @@
             </div>
             <div class="nav-links">
                 <a href="{{ url_for('home') }}">Home</a>
-                <a href="{{ url_for('products') }}">Products</a>
-                <a href="{{ url_for('portal') }}">Portal</a>
-                <a href="{{ url_for('login') }}">Login</a>
-                <a href="{{ url_for('cart') }}">Cart</a>
+                <a href="{{ url_for('products') }}">Products</a>         
+                {% if logged_in %}
+                    {% if auth_level == 'client' %}
+                        <a href="{{ url_for('profile_client') }}">Profile</a>
+                    {% else %}
+                        <a href="{{ url_for('profile_cust') }}">Profile</a>
+                    {% endif %}
+                    <a href="{{ url_for('cart') }}">Cart</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                {% endif %}
             </div>
         </div>
     </header>

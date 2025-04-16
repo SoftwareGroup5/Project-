@@ -6,6 +6,16 @@ import dbAPI
 import os, sqlite3
 
 app = Flask(__name__, static_folder='static')
+app.secret_key = 'development_secret_key_12345'
+
+@app.context_processor
+def inject_user():
+    """Make user session data available to all templates"""
+    return dict(
+        logged_in=session.get('logged_in', False),
+        auth_level=session.get('auth_level', None),
+        username=session.get('username', None)
+    )
 
 @app.route('/')
 @app.route('/home')
@@ -122,16 +132,12 @@ def cart():
     return render_template('cart.html', cart_items=cart_items, cart_total=cart_total)
     
 
-@app.route('/profile_client')
-def profile_client():
-    return 'client profile'
-
 @app.route('/profile_cust')
 def profile_cust():
     return 'customer profile'
 
-@app.route('/portal')
-def portal():
+@app.route('/profile_client')
+def profile_client():
     db_path = 'countertops_demo.db'
     
     inventory_data = dbAPI.get_store_inventory(db_path)
