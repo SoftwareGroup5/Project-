@@ -394,5 +394,55 @@ def get_shipping_status(db):
     conn.close()
     
     return {"data": rows}
-    
+
+
+def add_to_processing_cart(db, customer_id, product_id, quantity=1):
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+
+    # Step 1: Find or create the "Processing" order
+    c.execute("""
+        SELECT id_order FROM order_history_table
+        WHERE customer_id = ? AND order_status = 'Processing'
+    """, (customer_id,))
+    result = c.fetchone()
+
+    if not result:
+        c.execute("""
+            INSERT INTO order_history_table (customer_id, order_status, date, shipping_status)
+            VALUES (?, 'Processing', date('now'), 'Pending')
+        """, (customer_id,))
+        order_id = c.lastrowid
+    else:
+        order_id = result[0]
+
+    # Step 2: Get product price
+    c.execute("SELECT prod_price FROM prod_table WHERE id_product = ?", (product_id,))
+    unit_price = c.fetchone()[0]
+
+    # Step 3: Check if product already exists in the order
+    c.execute("""
+        SELECT quantity FROM orders WHERE order_id = ? AND product_id = ?
+    """, (order_id, product_id))
+    result = c.fetchone()
+
+    if result:
+        new_qty = result[0] + quantity
+        new_total = new_qty * unit_price
+        c.execute("""
+            UPDATE orders SET quantity = ?, total_price = ?
+            WHERE order_id = ? AND product_id = ?
+        """, (new_qty, new_total, order_id, product_id))
+    else:
+        total = quantity * unit_price
+        c.execute("""
+            INSERT INTO orders (order_id, product_id, quantity, total_price)
+            VALUES (?, ?, ?, ?)
+        """, (order_id, product_id, quantity, total))
+
+    conn.commit()
+    conn.close()
+
+
+
 

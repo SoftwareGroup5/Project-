@@ -25,7 +25,12 @@ def home():
 
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    db = 'countertops_demo.db'
+    product_list = dbAPI.get_all_products(db)
+    return render_template('products.html',
+                           products=product_list,
+                           logged_in=session.get('logged_in'),
+                           auth_level=session.get('auth_level'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -165,6 +170,22 @@ def fill_test_data():
 
 
     return f"{autho}<br>{customer_status}<br>{products_list}<br>{order_history}<br>{orders_status}"
+#add to cart function
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart_route():
+    db = 'countertops_demo.db'
+    customer_id = session.get('customer_id')
+
+    if not customer_id:
+        return redirect(url_for('login'))
+
+    product_id = int(request.form.get('processing'))
+    quantity = 1  
+
+    dbAPI.add_to_processing_cart(db, customer_id, product_id, quantity)
+
+    return redirect(url_for('products'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
