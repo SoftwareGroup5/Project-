@@ -89,16 +89,17 @@ def logout():
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
 
+    customer_id = session.get('customer_id')
+
     if request.method == 'POST':
         #dbAPI.make_order()
-        dbAPI.make_order('countertops_demo.db', 103)  #make the order 
+        dbAPI.make_order('countertops_demo.db', customer_id=customer_id)  #make the order 
         return redirect(url_for('cart'))  #refresh the page after making the order
 
     #dyanmic cart pull
-    customer_id = session.get('customer_id')
     cart_items = dbAPI.get_cart_for_customer('countertops_demo.db', customer_id)
     
-    #to run static
+    #to run static cart pull
     #cart_items= [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
     
     cart_total = sum(item['total_price'] for item in cart_items)

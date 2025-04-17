@@ -246,9 +246,6 @@ def make_order(db, customer_id):
     """, (order_id,))
     items = c.fetchall()
 
-    if not items:
-        conn.close()
-        return []
 
     #adjust inventory for each product in the order 
     for product_id, quantity in items:
