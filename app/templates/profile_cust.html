@@ -63,6 +63,32 @@
                     <div class="value">{{ customer[3] }}</div>
                 </div>
             </div>
+
+            <!-- Author: Evan Embry -->
+            <!-- html for past orders in customer profile -->
+      <div class="past-orders">
+        <h3>Past Orders</h3>
+        {% if past_orders %}
+        <table>
+          <thead>
+            <tr><th>ID</th><th>Date</th><th>Total ($)</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            {% for o in past_orders %}
+            <tr>
+              <td>{{ o.id_order }}</td>
+              <td>{{ o.date }}</td>
+              <td>{{ '{:.2f}'.format(o.order_total) }}</td>
+              <td>{{ o.order_status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No completed orders to show.</p>
+        {% endif %}
+      </div>
+
             
             <div class="action-buttons">
                 <a href="{{ url_for('cart') }}" class="action-btn">View Cart</a>
