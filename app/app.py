@@ -128,8 +128,10 @@ def profile_cust():
     
     # Get additional customer details from the database
     customer_details = dbAPI.get_customer_by_id('countertops_demo.db', session.get('customer_id'))
+    #fetch past orders
+    past_orders = dbAPI.get_past_orders('countertops_demo.db', session.get('customer_id'))
     
-    return render_template('profile_cust.html', profile=profile, customer=customer_details)
+    return render_template('profile_cust.html', profile=profile, customer=customer_details , past_orders = past_orders)
 
 @app.route('/profile_client')
 def profile_client():
