@@ -165,6 +165,8 @@ def fill_orders(db):
     insert_order(db, 3, 18, 4)
     insert_order(db, 3, 12, 2)
     insert_order(db, 4, 5, 10)
+    insert_order(db, 5, 5,  1)
+    insert_order(db, 6, 6,  1)
 
     conn.commit()
     conn.close()
