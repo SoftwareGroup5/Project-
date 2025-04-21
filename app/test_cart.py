@@ -64,6 +64,28 @@ class Test_CartFunctions(unittest.TestCase):
         #make sure success message returned 
         self.assertIn("has been marked as Received", result)
 
+    # Test for add to cart - Cole
+    def test_add_to_processing_cart(self):
+        # Add 1 of product ID 1 (Treering Counter) to customer 102's cart
+        dbAPI.add_to_processing_cart(self.myDB, 102, 1, 1)
+
+        # Retrieve updated cart for customer 102
+        result = dbAPI.get_cart_for_customer(self.myDB, 102)
+
+        # Check that the new item is in the cart along with the existing items
+        expected_names = {'Chicken Wings Dish', 'Brewhouse Surface', 'Treering Counter'}
+        result_names = {item['name'] for item in result}
+
+        self.assertEqual(result_names, expected_names)
+
+        # Find the new item and check its quantity and total
+        for item in result:
+            if item['name'] == 'Treering Counter':
+                self.assertEqual(item['quantity'], 1)
+                self.assertEqual(item['price'], 14.99)
+                self.assertEqual(item['total_price'], round(14.99, 2))
+
+
 
 if __name__ == '__main__':
     unittest.main()
