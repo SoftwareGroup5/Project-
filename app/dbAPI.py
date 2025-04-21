@@ -280,6 +280,28 @@ def get_customer_by_id(db, customer_id):
     return customer
 
 
+# def get_past_orders(db, customer_id):
+#     """
+#     Return list[dict] of the customer’s orders whose order_status
+#     is 'Open' or 'Closed', newest first.  Excludes 'Processing'.
+#     """
+#     conn = sqlite3.connect(db)
+#     conn.row_factory = sqlite3.Row
+#     c = conn.cursor()
+#     c.execute("""
+#         SELECT id_order,
+#                date,
+#                order_total,
+#                order_status
+#         FROM   order_history_table
+#         WHERE  customer_id = ?
+#           AND  order_status IN ('Open', 'Closed')
+#         ORDER BY date DESC;
+#     """, (customer_id,))
+#     rows = [dict(r) for r in c.fetchall()]
+#     conn.close()
+#     return rows
+
 def get_past_orders(db, customer_id):
     """
     Return list[dict] of the customer’s orders whose order_status
@@ -289,19 +311,18 @@ def get_past_orders(db, customer_id):
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
     c.execute("""
-        SELECT id_order,
-               date,
-               order_total,
-               order_status
-        FROM   order_history_table
-        WHERE  customer_id = ?
-          AND  order_status IN ('Open', 'Closed')
+        SELECT
+          id_order,
+          date,
+          order_status
+        FROM order_history_table
+        WHERE customer_id = ?
+          AND order_status IN ('Open', 'Closed')
         ORDER BY date DESC;
     """, (customer_id,))
     rows = [dict(r) for r in c.fetchall()]
     conn.close()
     return rows
-
 
 #functions for login
 def authorize(db, user, user_pass):
