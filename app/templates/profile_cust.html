@@ -71,14 +71,13 @@
         {% if past_orders %}
         <table>
           <thead>
-            <tr><th>ID</th><th>Date</th><th>Total ($)</th><th>Status</th></tr>
+            <tr><th>ID</th><th>Date</th><th>Status</th></tr>
           </thead>
           <tbody>
             {% for o in past_orders %}
             <tr>
               <td>{{ o.id_order }}</td>
               <td>{{ o.date }}</td>
-              <td>{{ '{:.2f}'.format(o.order_total) }}</td>
               <td>{{ o.order_status }}</td>
             </tr>
             {% endfor %}
