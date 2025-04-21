@@ -30,7 +30,7 @@ class Test_CartFunctions(unittest.TestCase):
 
     def test_get_cart_for_customer(self):
         
-        result = dbAPI.get_cart_for_customer(self.myDB, customer_id=103)
+        result = dbAPI.get_cart_for_customer(self.myDB, customer_id=102)
 
         expected = [{'name': 'Chicken Wings Dish', 'quantity': 2, 'price': 9.0, 'total_price': 19}, {'name': 'Brewhouse Surface', 'quantity': 4, 'price': 24.0, 'total_price': 96}]
 
@@ -41,7 +41,7 @@ class Test_CartFunctions(unittest.TestCase):
         c = conn.cursor()
 
         #run the function for customer 103 who has a pending order currently 
-        result = dbAPI.make_order(self.myDB, customer_id=103)
+        result = dbAPI.make_order(self.myDB, customer_id=102)
 
         #check that the order status (and shipping status?) were updated
         #order id for pending order is 3
