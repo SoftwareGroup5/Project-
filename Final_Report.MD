@@ -35,6 +35,7 @@ What we had planned for the future:
   - shipping status can be updated from admin portal
   - create account for new users 
   - continued styling and uniformity across pages 
+  - handle negative inventory + low stock 
 
 Any known problems (bugs, issues): 
   - database resets every time a user logs in/out (this was intentional for demonstration purposes but on a production level wouldn't make sense)
