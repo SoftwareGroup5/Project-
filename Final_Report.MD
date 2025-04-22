@@ -38,4 +38,4 @@ What we had planned for the future:
   - handle negative inventory + low stock 
 
 Any known problems (bugs, issues): 
-  - database resets every time a user logs in/out (this was intentional for demonstration purposes but on a production level wouldn't make sense)
+  - database resets every time a user logs in/out (this was intentional for demonstration and longevity purposes but on a production level wouldn't make sense)
