@@ -28,7 +28,7 @@ What we completed:
   - can place real order from cart 
 
 What we were in the middle of implementing: 
-  - We finished everything we planned to finish.
+  - Additional unit tests 
 
 What we had planned for the future:
   - abandon cart feature to send automatic email to customer
