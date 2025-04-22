@@ -18,6 +18,8 @@ Github repo: https://github.com/SoftwareGroup5/Project-.git
 
 Public site: https://countertops.onrender.com
 
+Demo Video: https://drive.google.com/file/d/1NVpiI1_hhjZEFL5l-LT_-chggTeEs0qU/view?usp=sharing
+
 ### Reflection 
 
 What we completed:
