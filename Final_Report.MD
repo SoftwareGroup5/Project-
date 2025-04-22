@@ -12,8 +12,6 @@ Stephen Tynan <br>
 
 Project tracker link: https://trello.com/b/bcz0QtdX/project 
 
-Link to 5 minute video: 
-
 Github repo: https://github.com/SoftwareGroup5/Project-.git
 
 Public site: https://countertops.onrender.com
