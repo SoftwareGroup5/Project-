@@ -23,7 +23,7 @@ Public site: https://countertops.onrender.com
 What we completed:
   - functional login for client and customer and admin
   - product page showing available products for purchase, can be added to cart
-  - profile page custom for admin vs customer: admin shows full inventory + shipping status, customer shows personalalized information + order history 
+  - profile page custom for admin vs customer: admin shows full inventory + shipping status, customer shows personalized information + order history 
   - cart shows active cart, calculates total
   - can place real order from cart 
 
