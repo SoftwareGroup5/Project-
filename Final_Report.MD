@@ -33,7 +33,7 @@ What we were in the middle of implementing:
 What we had planned for the future:
   - abandon cart feature to send automatic email to customer
   - shipping status can be updated from admin portal
-  - handling negative inventory 
+  - create account for new users 
 
 Any known problems (bugs, issues): 
   - database resets every time a user logs in/out  
